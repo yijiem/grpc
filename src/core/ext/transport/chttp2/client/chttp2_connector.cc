@@ -52,6 +52,7 @@
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/event_engine/channel_args_endpoint_config.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/orphanable.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/unique_type_name.h"
@@ -341,6 +342,12 @@ grpc_channel* grpc_channel_create(const char* target,
                                   grpc_channel_credentials* creds,
                                   const grpc_channel_args* c_args) {
   grpc_core::ExecCtx exec_ctx;
+  absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+  if (stacktrace.has_value()) {
+    gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+  } else {
+    gpr_log(GPR_DEBUG, "stacktrace unavailable");
+  }
   GRPC_API_TRACE("grpc_secure_channel_create(target=%s, creds=%p, args=%p)", 3,
                  (target, (void*)creds, (void*)c_args));
   grpc_channel* channel = nullptr;

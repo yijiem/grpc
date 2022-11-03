@@ -4178,6 +4178,7 @@ grpc_cc_library(
         "channel_args",
         "closure",
         "error",
+        "examine_stack",
         "grpc_service_config",
         "iomgr_fwd",
         "status_helper",
@@ -4508,6 +4509,7 @@ grpc_cc_library(
     deps = [
         "channel_args_preconditioning",
         "channel_stack_type",
+        "examine_stack",
         "grpc_insecure_credentials",
         "handshaker_registry",
         "resolved_address",

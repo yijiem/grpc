@@ -35,6 +35,7 @@
 #include "src/core/lib/backoff/backoff.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/work_serializer.h"
@@ -247,6 +248,12 @@ void PollingResolver::MaybeStartResolvingLocked() {
 }
 
 void PollingResolver::StartResolvingLocked() {
+  absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+  if (stacktrace.has_value()) {
+    gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+  } else {
+    gpr_log(GPR_DEBUG, "stacktrace unavailable");
+  }
   request_ = StartRequest();
   last_resolution_timestamp_ = Timestamp::Now();
   if (GPR_UNLIKELY(tracer_ != nullptr && tracer_->enabled())) {

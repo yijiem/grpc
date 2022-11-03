@@ -40,6 +40,7 @@
 #include "src/core/lib/event_engine/forkable.h"
 #include "src/core/lib/event_engine/posix_engine/timer_manager.h"
 #include "src/core/lib/experiments/config.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/fork.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/gprpp/thd.h"
@@ -174,6 +175,12 @@ void grpc_shutdown_internal(void* /*ignored*/) {
 
 void grpc_shutdown(void) {
   GRPC_API_TRACE("grpc_shutdown(void)", 0, ());
+  // absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+  // if (stacktrace.has_value()) {
+  //   gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+  // } else {
+  //   gpr_log(GPR_DEBUG, "stacktrace unavailable");
+  // }
   grpc_core::MutexLock lock(g_init_mu);
 
   if (--g_initializations == 0) {

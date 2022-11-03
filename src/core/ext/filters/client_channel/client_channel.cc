@@ -65,6 +65,7 @@
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/gprpp/work_serializer.h"
@@ -861,6 +862,12 @@ class ClientChannel::ClientChannelControlHelper
       ServerAddress address, const ChannelArgs& args) override
       ABSL_EXCLUSIVE_LOCKS_REQUIRED(*chand_->work_serializer_) {
     if (chand_->resolver_ == nullptr) return nullptr;  // Shutting down.
+    absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+    if (stacktrace.has_value()) {
+      gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+    } else {
+      gpr_log(GPR_DEBUG, "stacktrace unavailable");
+    }
     // Determine health check service name.
     absl::optional<std::string> health_check_service_name;
     if (!args.GetBool(GRPC_ARG_INHIBIT_HEALTH_CHECKING).value_or(false)) {
