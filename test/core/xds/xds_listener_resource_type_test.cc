@@ -14,15 +14,16 @@
 // limitations under the License.
 //
 
+#include <google/protobuf/any.pb.h>
+#include <google/protobuf/duration.pb.h>
+#include <google/protobuf/wrappers.pb.h>
+#include <grpc/grpc.h>
+#include <grpc/support/log.h>
 #include <map>
 #include <memory>
 #include <string>
 #include <utility>
 #include <vector>
-
-#include <google/protobuf/any.pb.h>
-#include <google/protobuf/duration.pb.h>
-#include <google/protobuf/wrappers.pb.h>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
@@ -34,15 +35,10 @@
 #include "gtest/gtest.h"
 #include "upb/def.hpp"
 #include "upb/upb.hpp"
-
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/xds/xds_bootstrap.h"
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_client.h"
 #include "src/core/ext/xds/xds_common_types.h"
-#include "src/core/ext/xds/xds_http_filters.h"
 #include "src/core/ext/xds/xds_listener.h"
 #include "src/core/ext/xds/xds_resource_type.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"

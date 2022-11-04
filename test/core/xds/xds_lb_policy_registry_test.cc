@@ -18,13 +18,13 @@
 
 #include "src/core/ext/xds/xds_lb_policy_registry.h"
 
-#include <algorithm>
-#include <string>
-#include <vector>
-
 #include <google/protobuf/any.pb.h>
 #include <google/protobuf/struct.pb.h>
 #include <google/protobuf/wrappers.pb.h>
+#include <grpc/grpc.h>
+#include <grpc/support/log.h>
+#include <algorithm>
+#include <string>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
@@ -32,10 +32,6 @@
 #include "gtest/gtest.h"
 #include "upb/def.hpp"
 #include "upb/upb.hpp"
-
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gprpp/orphanable.h"
@@ -43,7 +39,6 @@
 #include "src/core/lib/gprpp/validation_errors.h"
 #include "src/core/lib/load_balancing/lb_policy.h"
 #include "src/core/lib/load_balancing/lb_policy_factory.h"
-#include "src/core/lib/load_balancing/lb_policy_registry.h"
 #include "src/proto/grpc/testing/xds/v3/cluster.pb.h"
 #include "src/proto/grpc/testing/xds/v3/extension.pb.h"
 #include "src/proto/grpc/testing/xds/v3/ring_hash.pb.h"

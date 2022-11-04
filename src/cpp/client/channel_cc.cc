@@ -16,13 +16,6 @@
  *
  */
 
-#include <atomic>
-#include <cstring>
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
-
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/connectivity_state.h>
 #include <grpc/impl/codegen/gpr_types.h>
@@ -41,8 +34,13 @@
 #include <grpcpp/impl/grpc_library.h>
 #include <grpcpp/impl/rpc_method.h>
 #include <grpcpp/support/client_interceptor.h>
-#include <grpcpp/support/config.h>
 #include <grpcpp/support/slice.h>
+#include <atomic>
+#include <cstring>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "src/core/lib/iomgr/iomgr.h"
 

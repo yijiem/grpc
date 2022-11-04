@@ -15,19 +15,15 @@
 //
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <memory>
 #include <string>
 #include <utility>
-#include <vector>
 
 #include "absl/status/statusor.h"
 #include "absl/strings/str_split.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
@@ -36,7 +32,6 @@
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/resolver/resolver.h"
 #include "src/core/lib/resolver/resolver_factory.h"
-#include "src/core/lib/resolver/resolver_registry.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/uri/uri_parser.h"
 

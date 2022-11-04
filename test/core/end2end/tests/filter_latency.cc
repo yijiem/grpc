@@ -19,12 +19,6 @@
 #include <limits.h>
 #include <stdint.h>
 #include <string.h>
-
-#include <algorithm>
-#include <vector>
-
-#include "absl/status/status.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/propagation_bits.h>
@@ -33,14 +27,16 @@
 #include <grpc/support/log.h>
 #include <grpc/support/sync.h>
 #include <grpc/support/time.h>
+#include <algorithm>
+#include <vector>
 
+#include "absl/status/status.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/channel/channel_stack_builder.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/iomgr/closure.h"
 #include "src/core/lib/iomgr/error.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "test/core/end2end/cq_verifier.h"
 #include "test/core/end2end/end2end_tests.h"

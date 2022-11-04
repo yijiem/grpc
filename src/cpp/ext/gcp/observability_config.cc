@@ -14,14 +14,13 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/cpp/ext/gcp/observability_config.h"
 
+#include <grpc/support/port_platform.h>
 #include <stddef.h>
-
+#include <grpc/slice.h>
+#include <grpc/status.h>
 #include <algorithm>
-#include <memory>
 #include <utility>
 
 #include "absl/status/status.h"
@@ -30,10 +29,6 @@
 #include "absl/strings/str_split.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/slice.h>
-#include <grpc/status.h>
-
 #include "src/core/lib/gprpp/env.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/validation_errors.h"

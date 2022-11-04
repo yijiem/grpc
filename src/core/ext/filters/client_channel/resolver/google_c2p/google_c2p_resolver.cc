@@ -15,11 +15,12 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
-
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/support/log.h>
 #include <cstdint>
-#include <map>
 #include <memory>
 #include <random>
 #include <string>
@@ -32,12 +33,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/xds/xds_bootstrap.h"
 #include "src/core/ext/xds/xds_client_grpc.h"
 #include "src/core/lib/channel/channel_args.h"

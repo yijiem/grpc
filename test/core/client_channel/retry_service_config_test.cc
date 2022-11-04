@@ -16,16 +16,13 @@
 
 #include "src/core/ext/filters/client_channel/retry_service_config.h"
 
-#include <vector>
-
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
-#include "gtest/gtest.h"
-
 #include <grpc/grpc.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "gtest/gtest.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

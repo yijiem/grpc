@@ -16,23 +16,19 @@
 //
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/file_watcher_certificate_provider_factory.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 #include <algorithm>
 #include <memory>
 #include <vector>
 
 #include "absl/strings/str_format.h"
 #include "absl/strings/str_join.h"
-
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/json/json_util.h"
-#include "src/core/lib/security/certificate_provider/certificate_provider_registry.h"
 #include "src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h"
 
 namespace grpc_core {

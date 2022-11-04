@@ -14,13 +14,11 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/xds_common_types.h"
 
+#include <grpc/support/port_platform.h>
 #include <stddef.h>
 #include <stdint.h>
-
 #include <algorithm>
 #include <map>
 #include <utility>
@@ -43,8 +41,6 @@
 #include "upb/status.h"
 #include "upb/upb.hpp"
 #include "xds/type/v3/typed_struct.upb.h"
-
-#include "src/core/ext/xds/certificate_provider_store.h"
 #include "src/core/ext/xds/upb_utils.h"
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_client.h"

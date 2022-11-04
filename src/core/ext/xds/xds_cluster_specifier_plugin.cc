@@ -14,12 +14,11 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/xds_cluster_specifier_plugin.h"
 
+#include <grpc/support/port_platform.h>
 #include <stddef.h>
-
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <map>
 #include <utility>
@@ -30,14 +29,12 @@
 #include "upb/json_encode.h"
 #include "upb/status.h"
 #include "upb/upb.hpp"
-
-#include <grpc/support/log.h>
-
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/json/json.h"
 #include "src/core/lib/load_balancing/lb_policy_registry.h"
 #include "src/proto/grpc/lookup/v1/rls_config.upb.h"
 #include "src/proto/grpc/lookup/v1/rls_config.upbdefs.h"
+#include "src/core/lib/gprpp/ref_counted_ptr.h"
 
 namespace grpc_core {
 

@@ -15,10 +15,11 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <inttypes.h>
 #include <string.h>
-
+#include <grpc/impl/codegen/connectivity_state.h>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <memory>
 #include <string>
@@ -30,11 +31,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/codegen/connectivity_state.h>
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/subchannel_list.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
@@ -45,7 +41,6 @@
 #include "src/core/lib/json/json.h"
 #include "src/core/lib/load_balancing/lb_policy.h"
 #include "src/core/lib/load_balancing/lb_policy_factory.h"
-#include "src/core/lib/load_balancing/lb_policy_registry.h"
 #include "src/core/lib/load_balancing/subchannel_interface.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/transport/connectivity_state.h"

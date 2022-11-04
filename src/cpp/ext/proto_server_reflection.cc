@@ -18,10 +18,10 @@
 
 #include "src/cpp/ext/proto_server_reflection.h"
 
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/support/interceptor.h>
 #include <unordered_set>
 #include <vector>
-
-#include <grpcpp/grpcpp.h>
 
 // IWYU pragma: no_include <google/protobuf/descriptor.h>
 

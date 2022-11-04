@@ -14,13 +14,11 @@
 // limitations under the License.
 //
 
-#include <string>
-#include <vector>
-
 #include <grpc/grpc_security.h>
 #include <grpc/support/log.h>
 #include <grpcpp/security/tls_certificate_provider.h>
-#include <grpcpp/support/config.h>
+#include <string>
+#include <vector>
 
 namespace grpc {
 namespace experimental {

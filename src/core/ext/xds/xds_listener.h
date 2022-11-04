@@ -18,13 +18,10 @@
 #define GRPC_CORE_EXT_XDS_XDS_LISTENER_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
 #include <string.h>
-
 #include <algorithm>
 #include <array>
-#include <cstdint>
 #include <map>
 #include <memory>
 #include <string>
@@ -36,7 +33,6 @@
 #include "envoy/config/listener/v3/listener.upbdefs.h"
 #include "envoy/extensions/filters/network/http_connection_manager/v3/http_connection_manager.upbdefs.h"
 #include "upb/def.h"
-
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_client.h"
 #include "src/core/ext/xds/xds_common_types.h"

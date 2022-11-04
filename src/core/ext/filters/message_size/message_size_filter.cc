@@ -14,20 +14,16 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/message_size/message_size_filter.h"
 
-#include <cstdint>
+#include <grpc/support/port_platform.h>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
 #include <new>
 
 #include "absl/status/status.h"
 #include "absl/strings/str_format.h"
-
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/channel/channel_stack_builder.h"

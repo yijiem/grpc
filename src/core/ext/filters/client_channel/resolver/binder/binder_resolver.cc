@@ -13,11 +13,9 @@
 // limitations under the License.
 
 #include <grpc/support/port_platform.h>
-
 #include <algorithm>
 
 #include "absl/status/status.h"
-
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/port.h"  // IWYU pragma: keep
 
@@ -26,7 +24,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sys/un.h>
-
+#include <grpc/support/log.h>
 #include <memory>
 #include <string>
 #include <utility>
@@ -35,9 +33,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gprpp/orphanable.h"
@@ -46,7 +41,6 @@
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/resolver/resolver.h"
 #include "src/core/lib/resolver/resolver_factory.h"
-#include "src/core/lib/resolver/resolver_registry.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/uri/uri_parser.h"
 

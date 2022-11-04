@@ -15,15 +15,12 @@
 #include "src/core/lib/promise/map_pipe.h"
 
 #include <stdint.h>
-
+#include <grpc/event_engine/memory_allocator.h>
 #include <memory>
 #include <utility>
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-#include <grpc/event_engine/memory_allocator.h>
-
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/promise/activity.h"
 #include "src/core/lib/promise/detail/basic_seq.h"
@@ -38,6 +35,7 @@
 #include "src/core/lib/resource_quota/memory_quota.h"
 #include "src/core/lib/resource_quota/resource_quota.h"
 #include "test/core/promise/test_wakeup_schedulers.h"
+#include "src/core/lib/promise/detail/basic_join.h"
 
 using testing::Mock;
 using testing::MockFunction;

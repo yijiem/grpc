@@ -19,16 +19,6 @@
 #include "src/cpp/client/secure_credentials.h"
 
 #include <string.h>
-
-#include <algorithm>
-#include <map>
-#include <utility>
-
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
-#include "absl/strings/str_join.h"
-#include "absl/types/optional.h"
-
 #include <grpc/event_engine/event_engine.h>
 #include <grpc/grpc_security_constants.h>
 #include <grpc/impl/codegen/gpr_types.h>
@@ -42,7 +32,15 @@
 #include <grpcpp/support/channel_arguments.h>
 #include <grpcpp/support/slice.h>
 #include <grpcpp/support/status.h>
+#include <grpcpp/support/config.h>
+#include <algorithm>
+#include <map>
+#include <utility>
 
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "absl/strings/str_join.h"
+#include "absl/types/optional.h"
 #include "src/core/lib/event_engine/default_event_engine.h"
 #include "src/core/lib/gprpp/env.h"
 #include "src/core/lib/gprpp/status_helper.h"

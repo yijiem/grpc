@@ -18,12 +18,6 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <new>
-
-#include "absl/status/status.h"
-#include "absl/types/optional.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/propagation_bits.h>
@@ -31,7 +25,10 @@
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
+#include <new>
 
+#include "absl/status/status.h"
+#include "absl/types/optional.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"
@@ -42,7 +39,6 @@
 #include "src/core/lib/iomgr/call_combiner.h"
 #include "src/core/lib/iomgr/closure.h"
 #include "src/core/lib/iomgr/error.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/transport/transport.h"
 #include "test/core/end2end/cq_verifier.h"

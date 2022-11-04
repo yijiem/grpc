@@ -16,20 +16,22 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/load_reporting/server_load_reporting_filter.h"
 
+#include <grpc/support/port_platform.h>
 #include <limits.h>
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <grpc/grpc_security.h>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 #include <functional>
 #include <memory>
 #include <string>
 #include <utility>
 
-#include "absl/container/inlined_vector.h"
 #include "absl/meta/type_traits.h"
 #include "absl/status/status.h"
 #include "absl/strings/ascii.h"
@@ -39,13 +41,6 @@
 #include "absl/types/optional.h"
 #include "opencensus/stats/stats.h"
 #include "opencensus/tags/tag_key.h"
-
-#include <grpc/grpc_security.h>
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/ext/filters/load_reporting/registered_opencensus_objects.h"
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/channel/call_finalization.h"
@@ -62,7 +57,6 @@
 #include "src/core/lib/promise/seq.h"
 #include "src/core/lib/security/context/security_context.h"
 #include "src/core/lib/slice/slice.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/transport/metadata_batch.h"
 #include "src/core/lib/uri/uri_parser.h"

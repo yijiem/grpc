@@ -16,30 +16,24 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/security/credentials/jwt/json_token.h"
 
+#include <grpc/support/port_platform.h>
 #include <stdint.h>
 #include <string.h>
-
-#include <map>
-#include <string>
-#include <utility>
-
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
-
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
-
 #include <grpc/grpc_security.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
+#include <string>
+#include <utility>
 
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/security/util/json_util.h"
 #include "src/core/lib/slice/b64.h"

@@ -17,11 +17,14 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
-
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
 #include <algorithm>
-#include <array>
 #include <map>
 #include <memory>
 #include <set>
@@ -40,14 +43,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
 #include "absl/types/variant.h"
-
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/server_config_selector/server_config_selector.h"
 #include "src/core/ext/filters/server_config_selector/server_config_selector_filter.h"
 #include "src/core/ext/xds/certificate_provider_store.h"
@@ -58,7 +53,6 @@
 #include "src/core/ext/xds/xds_common_types.h"
 #include "src/core/ext/xds/xds_http_filters.h"
 #include "src/core/ext/xds/xds_listener.h"
-#include "src/core/ext/xds/xds_resource_type_impl.h"
 #include "src/core/ext/xds/xds_route_config.h"
 #include "src/core/ext/xds/xds_routing.h"
 #include "src/core/lib/address_utils/parse_address.h"

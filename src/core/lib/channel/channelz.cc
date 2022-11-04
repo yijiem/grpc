@@ -16,23 +16,19 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/channel/channelz.h"
 
-#include <algorithm>
-#include <atomic>
-#include <memory>
-
-#include "absl/status/statusor.h"
-#include "absl/strings/escaping.h"
-#include "absl/strings/strip.h"
-
+#include <grpc/support/port_platform.h>
 #include <grpc/impl/codegen/gpr_types.h>
 #include <grpc/support/cpu.h>
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
+#include <algorithm>
+#include <atomic>
 
+#include "absl/status/statusor.h"
+#include "absl/strings/escaping.h"
+#include "absl/strings/strip.h"
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/channel/channel_args.h"
@@ -42,6 +38,7 @@
 #include "src/core/lib/iomgr/exec_ctx.h"
 #include "src/core/lib/transport/connectivity_state.h"
 #include "src/core/lib/uri/uri_parser.h"
+#include "src/core/lib/iomgr/resolved_address.h"
 
 namespace grpc_core {
 namespace channelz {

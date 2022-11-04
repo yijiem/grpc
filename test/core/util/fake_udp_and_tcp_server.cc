@@ -14,24 +14,21 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "test/core/util/fake_udp_and_tcp_server.h"
 
+#include <grpc/support/port_platform.h>
 #include <errno.h>
 #include <string.h>
-
+#include <grpc/grpc.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <arpa/inet.h>
 #include <set>
 #include <utility>
 #include <vector>
 
 #include "absl/status/statusor.h"
 #include "absl/strings/str_cat.h"
-
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/iomgr/sockaddr.h"

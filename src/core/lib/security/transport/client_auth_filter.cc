@@ -17,9 +17,11 @@
  */
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
-
+#include <grpc/grpc_security.h>
+#include <grpc/grpc_security_constants.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/string_util.h>
 #include <functional>
 #include <memory>
 #include <type_traits>  // IWYU pragma: keep
@@ -27,12 +29,6 @@
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-
-#include <grpc/grpc_security.h>
-#include <grpc/grpc_security_constants.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/string_util.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"
@@ -52,7 +48,6 @@
 #include "src/core/lib/security/credentials/credentials.h"
 #include "src/core/lib/security/security_connector/security_connector.h"
 #include "src/core/lib/security/transport/auth_filters.h"
-#include "src/core/lib/slice/slice.h"
 #include "src/core/lib/transport/metadata_batch.h"
 #include "src/core/lib/transport/transport.h"
 

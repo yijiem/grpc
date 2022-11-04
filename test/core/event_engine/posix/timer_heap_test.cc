@@ -20,16 +20,12 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <grpc/support/log.h>
 #include <algorithm>
-#include <memory>
 #include <utility>
 
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/lib/event_engine/posix_engine/timer.h"
 #include "src/core/lib/gprpp/bitset.h"
 

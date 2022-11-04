@@ -20,17 +20,12 @@
 #define GRPC_CORE_LIB_TRANSPORT_HANDSHAKER_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
-#include <memory>
-
-#include "absl/base/thread_annotations.h"
-#include "absl/container/inlined_vector.h"
-
 #include <grpc/event_engine/event_engine.h>
 #include <grpc/slice.h>
 
+#include "absl/base/thread_annotations.h"
+#include "absl/container/inlined_vector.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gprpp/ref_counted.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
@@ -40,7 +35,6 @@
 #include "src/core/lib/iomgr/endpoint.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/iomgr/tcp_server.h"
-#include "src/core/lib/iomgr/timer.h"
 
 namespace grpc_core {
 
@@ -155,8 +149,6 @@ class HandshakeManager : public RefCounted<HandshakeManager> {
   // Deadline timer across all handshakers.
   grpc_event_engine::experimental::EventEngine::TaskHandle
       deadline_timer_handle_ ABSL_GUARDED_BY(mu_);
-  // grpc_timer deadline_timer_;
-  // grpc_closure on_timeout_;
   // The final callback and user_data to invoke after the last handshaker.
   grpc_closure on_handshake_done_ ABSL_GUARDED_BY(mu_);
   // Handshaker args.

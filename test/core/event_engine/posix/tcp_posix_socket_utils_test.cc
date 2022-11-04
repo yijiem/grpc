@@ -15,7 +15,9 @@
 #include <stdint.h>
 #include <sys/socket.h>
 #include <unistd.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/grpc.h>
+#include <arpa/inet.h>
 #include <string>
 
 #include "absl/status/status.h"
@@ -23,10 +25,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "gtest/gtest.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/grpc.h>
-
 #include "src/core/lib/iomgr/port.h"
 
 // This test won't work except with posix sockets enabled
@@ -41,7 +39,6 @@
 #endif
 
 #include <gtest/gtest.h>
-
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 

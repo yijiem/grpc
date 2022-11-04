@@ -15,7 +15,11 @@
 //
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/impl/codegen/connectivity_state.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -29,22 +33,12 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/codegen/connectivity_state.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h"
 #include "src/core/ext/xds/certificate_provider_store.h"
-#include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_certificate_provider.h"
-#include "src/core/ext/xds/xds_client.h"
 #include "src/core/ext/xds/xds_client_grpc.h"
 #include "src/core/ext/xds/xds_cluster.h"
 #include "src/core/ext/xds/xds_common_types.h"
-#include "src/core/ext/xds/xds_resource_type_impl.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/debug/trace.h"

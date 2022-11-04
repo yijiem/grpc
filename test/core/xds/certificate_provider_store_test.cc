@@ -18,20 +18,17 @@
 
 #include "src/core/ext/xds/certificate_provider_store.h"
 
+#include <grpc/grpc.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <memory>
 #include <thread>
 #include <vector>
 
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gprpp/unique_type_name.h"
 #include "src/core/lib/iomgr/error.h"
-#include "src/core/lib/security/certificate_provider/certificate_provider_registry.h"
 #include "test/core/util/test_config.h"
 
 namespace grpc_core {

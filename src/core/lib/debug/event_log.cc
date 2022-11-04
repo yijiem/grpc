@@ -12,18 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/debug/event_log.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <atomic>
-#include <cstdint>
 
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_join.h"
-
-#include <grpc/support/log.h>
 
 namespace grpc_core {
 

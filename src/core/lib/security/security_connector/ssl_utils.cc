@@ -16,25 +16,20 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/security/security_connector/ssl_utils.h"
 
+#include <grpc/support/port_platform.h>
 #include <stdint.h>
 #include <string.h>
-
-#include <memory>
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
+#include <grpc/support/sync.h>
 #include <vector>
 
 #include "absl/strings/match.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_split.h"
-
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-#include <grpc/support/sync.h>
-
 #include "src/core/ext/transport/chttp2/alpn/alpn.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/useful.h"

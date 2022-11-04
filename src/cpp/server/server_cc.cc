@@ -17,19 +17,6 @@
 
 #include <limits.h>
 #include <string.h>
-
-#include <algorithm>
-#include <atomic>
-#include <cstdlib>
-#include <memory>
-#include <new>
-#include <sstream>
-#include <string>
-#include <utility>
-#include <vector>
-
-#include "absl/status/status.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/gpr_types.h>
@@ -61,13 +48,22 @@
 #include <grpcpp/server_context.h>
 #include <grpcpp/support/channel_arguments.h>
 #include <grpcpp/support/client_interceptor.h>
-#include <grpcpp/support/config.h>
 #include <grpcpp/support/interceptor.h>
 #include <grpcpp/support/method_handler.h>
 #include <grpcpp/support/server_interceptor.h>
 #include <grpcpp/support/slice.h>
 #include <grpcpp/support/status.h>
+#include <algorithm>
+#include <atomic>
+#include <cstdlib>
+#include <memory>
+#include <new>
+#include <sstream>
+#include <string>
+#include <utility>
+#include <vector>
 
+#include "absl/status/status.h"
 #include "src/core/ext/transport/inproc/inproc_transport.h"
 #include "src/core/lib/gprpp/manual_constructor.h"
 #include "src/core/lib/iomgr/exec_ctx.h"

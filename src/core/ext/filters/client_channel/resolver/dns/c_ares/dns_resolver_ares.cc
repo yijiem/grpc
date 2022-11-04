@@ -15,10 +15,11 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <grpc/impl/codegen/grpc_types.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <functional>
 #include <map>
@@ -33,12 +34,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/codegen/grpc_types.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gprpp/debug_location.h"
@@ -63,12 +58,10 @@
 
 #include <stdio.h>
 #include <string.h>
-
 #include <address_sorting/address_sorting.h>
 
 #include "absl/container/flat_hash_set.h"
 #include "absl/strings/str_cat.h"
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb_balancer_addresses.h"
 #include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.h"
 #include "src/core/ext/filters/client_channel/resolver/dns/dns_resolver_selection.h"
@@ -80,7 +73,6 @@
 #include "src/core/lib/iomgr/gethostname.h"
 #include "src/core/lib/iomgr/resolve_address.h"
 #include "src/core/lib/json/json.h"
-#include "src/core/lib/resolver/resolver_registry.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/service_config/service_config_impl.h"
 #include "src/core/lib/transport/error_utils.h"

@@ -12,21 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/gprpp/time.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/impl/codegen/gpr_types.h>
 #include <atomic>
 #include <chrono>
-#include <cstdint>
 #include <limits>
 #include <string>
 #include <utility>
+#include <ratio>
 
 #include "absl/strings/str_format.h"
-
-#include <grpc/impl/codegen/gpr_types.h>
-
 #include "src/core/lib/gprpp/no_destruct.h"
 
 namespace grpc_core {

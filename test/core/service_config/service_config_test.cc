@@ -17,10 +17,9 @@
 #include "src/core/lib/service_config/service_config.h"
 
 #include <stdint.h>
-
+#include <grpc/grpc.h>
 #include <memory>
 #include <string>
-#include <vector>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
@@ -28,9 +27,6 @@
 #include "absl/types/optional.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

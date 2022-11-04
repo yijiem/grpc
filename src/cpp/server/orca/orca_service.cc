@@ -15,7 +15,18 @@
 //
 
 #include <stddef.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/support/log.h>
+#include <grpcpp/ext/orca_service.h>
+#include <grpcpp/impl/codegen/server_callback_handlers.h>
+#include <grpcpp/impl/codegen/sync.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/impl/rpc_service_method.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/support/byte_buffer.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/support/slice.h>
+#include <grpcpp/support/status.h>
 #include <map>
 #include <memory>
 #include <string>
@@ -29,21 +40,6 @@
 #include "upb/upb.hpp"
 #include "xds/data/orca/v3/orca_load_report.upb.h"
 #include "xds/service/orca/v3/orca.upb.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/support/log.h>
-#include <grpcpp/ext/orca_service.h>
-#include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/sync.h>
-#include <grpcpp/impl/rpc_method.h>
-#include <grpcpp/impl/rpc_service_method.h>
-#include <grpcpp/server_context.h>
-#include <grpcpp/support/byte_buffer.h>
-#include <grpcpp/support/config.h>
-#include <grpcpp/support/server_callback.h>
-#include <grpcpp/support/slice.h>
-#include <grpcpp/support/status.h>
-
 #include "src/core/lib/event_engine/default_event_engine.h"
 #include "src/core/lib/gprpp/debug_location.h"
 #include "src/core/lib/gprpp/ref_counted.h"

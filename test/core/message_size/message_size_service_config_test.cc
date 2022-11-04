@@ -15,17 +15,13 @@
 //
 
 #include <stddef.h>
-
+#include <grpc/grpc.h>
+#include <grpc/slice.h>
 #include <memory>
-#include <vector>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpc/slice.h>
-
 #include "src/core/ext/filters/message_size/message_size_filter.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"

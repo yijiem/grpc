@@ -14,13 +14,10 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb_balancer_addresses.h"
 
+#include <grpc/support/port_platform.h>
 #include <stddef.h>
-
-#include <memory>
 #include <utility>
 
 #include "src/core/lib/channel/channel_args.h"

@@ -14,12 +14,11 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/xds_cluster.h"
 
+#include <grpc/support/port_platform.h>
 #include <stddef.h>
-
+#include <grpc/support/log.h>
 #include <utility>
 
 #include "absl/status/status.h"
@@ -44,9 +43,6 @@
 #include "google/protobuf/wrappers.upb.h"
 #include "upb/text_encode.h"
 #include "upb/upb.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/ext/xds/upb_utils.h"
 #include "src/core/ext/xds/xds_client.h"
 #include "src/core/ext/xds/xds_common_types.h"
@@ -61,6 +57,7 @@
 #include "src/core/lib/gprpp/validation_errors.h"
 #include "src/core/lib/load_balancing/lb_policy_registry.h"
 #include "src/core/lib/matchers/matchers.h"
+#include "src/core/lib/gprpp/ref_counted_ptr.h"
 
 namespace grpc_core {
 

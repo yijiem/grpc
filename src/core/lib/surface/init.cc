@@ -16,14 +16,10 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/surface/init.h"
 
+#include <grpc/support/port_platform.h>
 #include <limits.h>
-
-#include "absl/base/thread_annotations.h"
-
 #include <grpc/fork.h>
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
@@ -32,6 +28,7 @@
 #include <grpc/support/sync.h>
 #include <grpc/support/time.h>
 
+#include "absl/base/thread_annotations.h"
 #include "src/core/ext/filters/client_channel/backup_poller.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_stack_builder.h"
@@ -51,7 +48,6 @@
 #include "src/core/lib/security/security_connector/security_connector.h"
 #include "src/core/lib/security/transport/auth_filters.h"
 #include "src/core/lib/surface/api_trace.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/surface/init_internally.h"
 

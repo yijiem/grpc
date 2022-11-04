@@ -16,19 +16,17 @@
 //
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/cpp/server/csds/csds.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/slice.h>
+#include <grpcpp/support/slice.h>
+#include <grpcpp/support/interceptor.h>
 #include <string>
 #include <utility>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-
-#include <grpc/slice.h>
-#include <grpcpp/support/config.h>
-#include <grpcpp/support/slice.h>
 
 namespace grpc {
 namespace xds {

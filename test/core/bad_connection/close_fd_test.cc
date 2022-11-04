@@ -23,13 +23,11 @@
  */
 #include <stdint.h>
 #include <stdlib.h>
-
-#include "absl/status/statusor.h"
-
 #include <grpc/impl/codegen/propagation_bits.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 
+#include "absl/status/statusor.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channelz.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
@@ -40,14 +38,11 @@
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/transport/transport_fwd.h"
 
-struct test_ctx;
-
 // This test won't work except with posix sockets enabled
 #ifdef GRPC_POSIX_SOCKET_TCP
 
 #include <string.h>
 #include <unistd.h>
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/support/alloc.h>

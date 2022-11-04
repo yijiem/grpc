@@ -20,11 +20,14 @@
 #define GRPC_CORE_LIB_TRANSPORT_TRANSPORT_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
 #include <stdint.h>
 #include <string.h>
-
+#include <grpc/impl/codegen/connectivity_state.h>
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/support/atm.h>
+#include <grpc/support/log.h>
 #include <functional>
 #include <string>
 #include <utility>
@@ -32,13 +35,6 @@
 #include "absl/status/status.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/codegen/connectivity_state.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/atm.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/context.h"
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gprpp/debug_location.h"
@@ -59,8 +55,6 @@
 #include "src/core/lib/transport/connectivity_state.h"
 #include "src/core/lib/transport/metadata_batch.h"
 #include "src/core/lib/transport/transport_fwd.h"
-
-struct grpc_transport_stream_op_batch_payload;
 
 /* Minimum and maximum protocol accepted versions. */
 #define GRPC_PROTOCOL_VERSION_MAX_MAJOR 2

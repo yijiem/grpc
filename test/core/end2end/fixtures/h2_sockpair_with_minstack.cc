@@ -17,17 +17,13 @@
  */
 
 #include <string.h>
-
-#include <memory>
-
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
-
 #include <grpc/grpc.h>
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
 #include "src/core/ext/transport/chttp2/transport/chttp2_transport.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_args_preconditioning.h"

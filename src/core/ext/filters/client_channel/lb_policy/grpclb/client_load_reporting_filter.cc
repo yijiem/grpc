@@ -16,17 +16,14 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/client_load_reporting_filter.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/support/log.h>
 #include <new>
 
 #include "absl/status/status.h"
 #include "absl/types/optional.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb_client_stats.h"
 #include "src/core/lib/gprpp/debug_location.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
@@ -34,6 +31,7 @@
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/transport/metadata_batch.h"
 #include "src/core/lib/transport/transport.h"
+#include "absl/meta/type_traits.h"
 
 static grpc_error_handle clr_init_channel_elem(
     grpc_channel_element* /*elem*/, grpc_channel_element_args* /*args*/) {

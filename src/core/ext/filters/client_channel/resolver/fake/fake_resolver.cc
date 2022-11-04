@@ -17,19 +17,16 @@
 // This is similar to the sockaddr resolver, except that it supports a
 // bunch of query args that are useful for dependency injection in tests.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/resolver/fake/fake_resolver.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/support/log.h>
 #include <memory>
 #include <utility>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gpr/useful.h"
@@ -37,7 +34,6 @@
 #include "src/core/lib/gprpp/orphanable.h"
 #include "src/core/lib/gprpp/work_serializer.h"
 #include "src/core/lib/resolver/resolver_factory.h"
-#include "src/core/lib/resolver/resolver_registry.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/service_config/service_config.h"
 #include "src/core/lib/uri/uri_parser.h"

@@ -14,17 +14,17 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h"
 
+#include <grpc/support/port_platform.h>
 #include <inttypes.h>
 #include <stddef.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/impl/codegen/connectivity_state.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
-#include <cstdint>
 #include <map>
 #include <memory>
 #include <set>
@@ -37,11 +37,6 @@
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/variant.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/codegen/connectivity_state.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/channel/channel_args.h"

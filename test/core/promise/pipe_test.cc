@@ -14,6 +14,8 @@
 
 #include "src/core/lib/promise/pipe.h"
 
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/support/log.h>
 #include <memory>
 #include <tuple>
 #include <utility>
@@ -21,19 +23,15 @@
 #include "absl/status/status.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/promise/activity.h"
-#include "src/core/lib/promise/detail/basic_seq.h"
 #include "src/core/lib/promise/join.h"
 #include "src/core/lib/promise/map.h"
 #include "src/core/lib/promise/seq.h"
 #include "src/core/lib/resource_quota/memory_quota.h"
 #include "src/core/lib/resource_quota/resource_quota.h"
 #include "test/core/promise/test_wakeup_schedulers.h"
+#include "src/core/lib/promise/detail/basic_join.h"
 
 using testing::MockFunction;
 using testing::StrictMock;

@@ -16,25 +16,20 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/http/client_authority_filter.h"
 
+#include <grpc/support/port_platform.h>
 #include <limits.h>
-
+#include <grpc/impl/codegen/grpc_types.h>
 #include <functional>
 #include <memory>
 
 #include "absl/status/status.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/codegen/grpc_types.h>
-
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/channel/channel_stack_builder.h"
 #include "src/core/lib/config/core_configuration.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/transport/metadata_batch.h"
 

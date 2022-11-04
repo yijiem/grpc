@@ -16,15 +16,13 @@
  *
  */
 
-#include <memory>
-#include <string>
-#include <vector>
-
 #include <grpcpp/impl/channel_argument_option.h>
 #include <grpcpp/impl/server_builder_option.h>
 #include <grpcpp/impl/server_builder_plugin.h>
 #include <grpcpp/support/channel_arguments.h>
-#include <grpcpp/support/config.h>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace grpc {
 

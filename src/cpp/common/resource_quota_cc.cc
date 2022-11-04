@@ -17,12 +17,9 @@
  */
 
 #include <stddef.h>
-
-#include <string>
-
 #include <grpc/grpc.h>
 #include <grpcpp/resource_quota.h>
-#include <grpcpp/support/config.h>
+#include <string>
 
 namespace grpc {
 

@@ -17,12 +17,11 @@
  */
 
 #include <grpc/support/port_platform.h>
-
+#include <arpa/inet.h>
 #include <algorithm>
 #include <vector>
 
 #include "absl/strings/string_view.h"
-
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/sockaddr.h"
 
@@ -35,28 +34,25 @@
 
 #if GRPC_ARES == 1
 
+#include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.h"
+
 #include <string.h>
 #include <sys/types.h>  // IWYU pragma: keep
-
-#include <string>
-#include <utility>
-
 #include <address_sorting/address_sorting.h>
 #include <ares.h>
-
-#include "absl/status/status.h"
-#include "absl/status/statusor.h"
-#include "absl/strings/str_cat.h"
-#include "absl/strings/str_format.h"
-
 #include <grpc/impl/codegen/grpc_types.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 #include <grpc/support/string_util.h>
 #include <grpc/support/sync.h>
+#include <string>
+#include <utility>
 
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "absl/strings/str_cat.h"
+#include "absl/strings/str_format.h"
 #include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_ev_driver.h"
-#include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.h"
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/channel/channel_args.h"

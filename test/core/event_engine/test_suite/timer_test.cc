@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/support/log.h>
 #include <atomic>
 #include <chrono>
 #include <cstdint>
@@ -19,6 +21,7 @@
 #include <random>
 #include <thread>
 #include <vector>
+#include <ratio>
 
 #include "absl/base/thread_annotations.h"
 #include "absl/functional/bind_front.h"
@@ -26,10 +29,6 @@
 #include "absl/time/time.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/gprpp/sync.h"
 #include "test/core/event_engine/test_suite/event_engine_test.h"
 

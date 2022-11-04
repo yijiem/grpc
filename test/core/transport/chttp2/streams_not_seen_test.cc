@@ -17,12 +17,18 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <limits.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/impl/codegen/propagation_bits.h>
+#include <grpc/slice.h>
+#include <grpc/slice_buffer.h>
+#include <grpc/status.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <atomic>
 #include <memory>
@@ -39,16 +45,6 @@
 #include "absl/time/time.h"
 #include "absl/types/optional.h"
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/codegen/propagation_bits.h>
-#include <grpc/slice.h>
-#include <grpc/slice_buffer.h>
-#include <grpc/status.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/transport/chttp2/transport/chttp2_transport.h"
 #include "src/core/ext/transport/chttp2/transport/frame_goaway.h"
 #include "src/core/lib/channel/channel_args.h"
@@ -70,7 +66,6 @@
 #include "src/core/lib/iomgr/tcp_server.h"
 #include "src/core/lib/slice/slice.h"
 #include "src/core/lib/slice/slice_internal.h"
-#include "src/core/lib/surface/channel_init.h"
 #include "src/core/lib/surface/channel_stack_type.h"
 #include "src/core/lib/transport/metadata_batch.h"
 #include "src/core/lib/transport/transport.h"

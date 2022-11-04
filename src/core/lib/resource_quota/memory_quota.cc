@@ -12,19 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/resource_quota/memory_quota.h"
 
+#include <grpc/support/port_platform.h>
 #include <inttypes.h>
-
 #include <algorithm>
 #include <atomic>
 #include <tuple>
 
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
-
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/mpscq.h"
@@ -34,6 +31,7 @@
 #include "src/core/lib/promise/race.h"
 #include "src/core/lib/promise/seq.h"
 #include "src/core/lib/resource_quota/trace.h"
+#include "src/core/lib/promise/detail/basic_seq.h"
 
 namespace grpc_core {
 

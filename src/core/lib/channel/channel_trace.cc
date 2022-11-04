@@ -16,16 +16,13 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/channel/channel_trace.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/support/alloc.h>
 #include <algorithm>
-#include <map>
 #include <string>
 #include <utility>
-
-#include <grpc/support/alloc.h>
 
 #include "src/core/lib/channel/channelz.h"
 #include "src/core/lib/gpr/string.h"
