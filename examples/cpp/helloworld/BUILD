@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("//bazel:grpc_build_system.bzl", "grpc_cc_test")
+
 licenses(["notice"])
 
 cc_binary(
@@ -21,6 +23,30 @@ cc_binary(
     deps = [
         "//:grpc++",
         "//examples/protos:helloworld_cc_grpc",
+    ],
+)
+
+grpc_cc_test(
+    name = "greeter_client_test",
+    srcs = ["greeter_client_test.cc"],
+    external_deps = [
+        "gtest",
+    ],
+    deps = [
+        "//:grpc++",
+        "//examples/protos:helloworld_cc_grpc",
+        "//test/core/util:grpc_test_util",
+    ],
+)
+
+grpc_cc_test(
+    name = "thread_leak_test",
+    srcs = ["thread_leak_test.cc"],
+    external_deps = [
+        "gtest",
+    ],
+    deps = [
+        "//test/core/util:grpc_test_util",
     ],
 )
 
