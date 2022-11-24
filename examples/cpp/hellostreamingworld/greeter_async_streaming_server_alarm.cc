@@ -118,7 +118,7 @@ class ServerImpl final {
     }
 
     void PutTaskBackToQueue() {
-      alarm_.Set(cq_, gpr_now(gpr_clock_type::GPR_CLOCK_REALTIME), this);
+      alarm_.Set(cq_, gpr_now(gpr_clock_type::GPR_CLOCK_MONOTONIC), this);
     }
 
     MultiGreeter::AsyncService* service_;

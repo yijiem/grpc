@@ -83,7 +83,7 @@ class ServerImpl final {
         }
       } else if (status_ == PUSH_TO_BACK) {
         status_ = PROCESS;
-        alarm_.Set(cq_, gpr_now(gpr_clock_type::GPR_CLOCK_REALTIME), this);
+        alarm_.Set(cq_, gpr_now(gpr_clock_type::GPR_CLOCK_MONOTONIC), this);
       } else {
         GPR_ASSERT(status_ == FINISH);
         delete this;
