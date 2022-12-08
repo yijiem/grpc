@@ -168,6 +168,37 @@ TEST(AlarmTest, MultithreadedRegularExpiry) {
   EXPECT_EQ(junk, output_tag);
 }
 
+TEST(AlarmTest, MultithreadedMultipleZeroExpiry) {
+  CompletionQueue cq;
+  void* junk = reinterpret_cast<void*>(1618033);
+
+  auto c = std::make_shared<Completion>();
+  std::thread t1([c, &cq, &junk] {
+    Alarm alarm[1000] = {};
+    for (int i = 0; i < 1000; i++) {
+      alarm[i].Set(&cq, gpr_now(GPR_CLOCK_MONOTONIC), junk);
+    }
+    std::unique_lock<std::mutex> l(c->mu);
+    c->cv.wait(l, [c] { return c->completed; });
+  });
+
+  std::thread t2([c, &cq, &junk] {
+    bool ok;
+    void* output_tag;
+    for (int i = 0; i < 1000; i++) {
+      EXPECT_TRUE(cq.Next(&output_tag, &ok));
+      EXPECT_TRUE(ok);
+      EXPECT_EQ(junk, output_tag);
+    }
+    std::lock_guard<std::mutex> l(c->mu);
+    c->completed = true;
+    c->cv.notify_one();
+  });
+
+  t1.join();
+  t2.join();
+}
+
 TEST(AlarmTest, DeprecatedRegularExpiry) {
   CompletionQueue cq;
   void* junk = reinterpret_cast<void*>(1618033);
