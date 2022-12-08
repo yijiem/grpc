@@ -44,6 +44,7 @@ foreach(_target
   greeter_streaming_client
   greeter_async_streaming_server
   greeter_async_streaming_server_alarm
+  greeter_async_streaming_server_alarm_thread
   greeter_async_streaming_server_queue_to_front
   greeter_async_streaming_server_queue_to_back)
   add_executable(${_target} "${_target}.cc")
