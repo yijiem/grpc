@@ -150,6 +150,7 @@ grpc_cc_test(
     ],
     external_deps = ["gtest"],
     language = "C++",
+    linkstatic = 1,
     deps = [
         "//:gpr",
         "//:grpc",
