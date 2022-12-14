@@ -16,11 +16,11 @@
 #define GRPC_CORE_LIB_PROMISE_CANCEL_CALLBACK_H
 
 #include <grpc/support/port_platform.h>
-
 #include <utility>
 
 #include "src/core/lib/promise/detail/promise_like.h"
 #include "src/core/lib/promise/poll.h"
+#include "absl/types/variant.h"
 
 namespace grpc_core {
 

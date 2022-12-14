@@ -16,18 +16,16 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <atomic>
-
-#include "absl/status/status.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/propagation_bits.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <atomic>
 
+#include "absl/status/status.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/config/core_configuration.h"
 #include "src/core/lib/gpr/useful.h"

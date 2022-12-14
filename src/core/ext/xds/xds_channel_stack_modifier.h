@@ -20,14 +20,11 @@
 #define GRPC_CORE_EXT_XDS_XDS_CHANNEL_STACK_MODIFIER_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/grpc.h>
 #include <utility>
 #include <vector>
 
 #include "absl/strings/string_view.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack_builder.h"
 #include "src/core/lib/gpr/useful.h"

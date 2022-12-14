@@ -20,7 +20,9 @@
 #define GRPCXX_CHANNEL_FILTER_H
 
 #include <stddef.h>
-
+#include <grpc/grpc.h>
+#include <grpc/support/atm.h>
+#include <grpcpp/support/config.h>
 #include <functional>
 #include <new>
 #include <string>
@@ -28,12 +30,6 @@
 
 #include "absl/status/status.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/atm.h>
-#include <grpcpp/support/config.h>
-
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/channel/context.h"

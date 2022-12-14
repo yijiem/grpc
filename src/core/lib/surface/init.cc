@@ -16,22 +16,18 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/surface/init.h"
 
+#include <grpc/support/port_platform.h>
 #include <limits.h>
-
-#include "absl/base/thread_annotations.h"
-
 #include <grpc/fork.h>
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/support/log.h>
 #include <grpc/support/sync.h>
 #include <grpc/support/time.h>
 
+#include "absl/base/thread_annotations.h"
 #include "src/core/ext/filters/client_channel/backup_poller.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_stack_builder.h"

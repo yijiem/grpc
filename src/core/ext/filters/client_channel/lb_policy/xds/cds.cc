@@ -15,7 +15,11 @@
 //
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/impl/connectivity_state.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -29,13 +33,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/connectivity_state.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h"
 #include "src/core/ext/xds/certificate_provider_store.h"
 #include "src/core/ext/xds/xds_certificate_provider.h"
@@ -68,6 +65,8 @@
 #include "src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h"
 #include "src/core/lib/security/credentials/xds/xds_credentials.h"
 #include "src/core/lib/transport/connectivity_state.h"
+#include "absl/types/variant.h"
+#include "src/core/ext/xds/xds_health_status.h"
 
 namespace grpc_core {
 

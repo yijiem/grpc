@@ -14,13 +14,15 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/subchannel.h"
 
+#include <grpc/support/port_platform.h>
 #include <inttypes.h>
 #include <limits.h>
-
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <memory>
 #include <new>
@@ -30,12 +32,6 @@
 #include "absl/strings/cord.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/health/health_check_client.h"
 #include "src/core/ext/filters/client_channel/subchannel_pool_interface.h"
 #include "src/core/ext/filters/client_channel/subchannel_stream_client.h"

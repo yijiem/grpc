@@ -16,19 +16,16 @@
 #define GRPC_CORE_LIB_EVENT_ENGINE_POSIX_ENGINE_TCP_SOCKET_UTILS_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/event_engine/endpoint_config.h>
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <functional>
 #include <string>
 #include <utility>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-
-#include <grpc/event_engine/endpoint_config.h>
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/iomgr/port.h"
 #include "src/core/lib/iomgr/socket_mutator.h"

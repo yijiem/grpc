@@ -20,7 +20,8 @@
 
 #include <inttypes.h>
 #include <string.h>
-
+#include <grpc/support/sync.h>
+#include <grpc/support/time.h>
 #include <algorithm>
 #include <ostream>
 #include <string>
@@ -28,11 +29,6 @@
 
 #include "absl/strings/str_join.h"
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpc/support/sync.h>
-#include <grpc/support/time.h>
-
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/thd.h"
 #include "src/core/lib/iomgr/exec_ctx.h"

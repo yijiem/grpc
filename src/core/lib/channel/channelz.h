@@ -20,9 +20,10 @@
 #define GRPC_CORE_LIB_CHANNEL_CHANNELZ_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
+#include <grpc/impl/connectivity_state.h>
+#include <grpc/slice.h>
+#include <grpc/grpc.h>
 #include <atomic>
 #include <cstdint>
 #include <map>
@@ -33,11 +34,6 @@
 
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/connectivity_state.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-
 #include "src/core/lib/channel/channel_trace.h"
 #include "src/core/lib/gpr/time_precise.h"
 #include "src/core/lib/gpr/useful.h"

@@ -15,20 +15,16 @@
 // TODO(ctiller): Add a unit test suite for these filters once it's practical to
 // mock transport operations.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/channel_idle/channel_idle_filter.h"
 
+#include <grpc/support/port_platform.h>
 #include <stdlib.h>
-
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <functional>
 #include <utility>
 
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_stack_builder.h"
 #include "src/core/lib/channel/promise_based_filter.h"

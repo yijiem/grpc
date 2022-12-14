@@ -14,13 +14,12 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h"
 
+#include <grpc/support/port_platform.h>
 #include <inttypes.h>
 #include <stdlib.h>
-
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <atomic>
 #include <cmath>
@@ -40,11 +39,10 @@
 #include "absl/types/optional.h"
 
 #define XXH_INLINE_ALL
-#include "xxhash.h"
-
 #include <grpc/impl/connectivity_state.h>
 #include <grpc/support/log.h>
 
+#include "xxhash.h"
 #include "src/core/ext/filters/client_channel/client_channel.h"
 #include "src/core/ext/filters/client_channel/lb_policy/subchannel_list.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"

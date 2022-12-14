@@ -16,12 +16,13 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/http_proxy.h"
 
+#include <grpc/support/port_platform.h>
 #include <string.h>
-
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -34,11 +35,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/string.h"
 #include "src/core/lib/gprpp/env.h"

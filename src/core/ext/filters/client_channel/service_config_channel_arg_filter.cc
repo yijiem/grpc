@@ -18,7 +18,8 @@
 // in the call context per call for direct channels.
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <new>
 #include <string>
 #include <utility>
@@ -26,10 +27,6 @@
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"

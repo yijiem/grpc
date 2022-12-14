@@ -15,21 +15,17 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <inttypes.h>
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/grpc.h>
+#include <grpc/impl/connectivity_state.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 
 #include "absl/base/thread_annotations.h"
 #include "absl/status/status.h"
 #include "absl/synchronization/mutex.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/grpc.h>
-#include <grpc/impl/connectivity_state.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/ext/filters/client_channel/client_channel.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"

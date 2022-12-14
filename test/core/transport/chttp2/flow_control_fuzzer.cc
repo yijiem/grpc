@@ -15,7 +15,9 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <grpc/event_engine/memory_request.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 #include <algorithm>
 #include <deque>
 #include <functional>
@@ -31,12 +33,6 @@
 #include "absl/status/status.h"
 #include "absl/strings/str_join.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/memory_request.h>
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/ext/transport/chttp2/transport/flow_control.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/time.h"

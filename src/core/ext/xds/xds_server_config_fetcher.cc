@@ -17,9 +17,12 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
-
+#include <grpc/grpc.h>
+#include <grpc/grpc_security.h>
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -39,14 +42,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
 #include "absl/types/variant.h"
-
-#include <grpc/grpc.h>
-#include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/server_config_selector/server_config_selector.h"
 #include "src/core/ext/filters/server_config_selector/server_config_selector_filter.h"
 #include "src/core/ext/xds/certificate_provider_store.h"

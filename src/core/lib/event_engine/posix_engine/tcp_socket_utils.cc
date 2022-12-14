@@ -12,22 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/event_engine/posix_engine/tcp_socket_utils.h"
 
+#include <grpc/support/port_platform.h>
 #include <errno.h>
 #include <inttypes.h>
 #include <limits.h>
+#include <grpc/event_engine/event_engine.h>
 
 #include "absl/cleanup/cleanup.h"
 #include "absl/status/statusor.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/iomgr/port.h"
 
@@ -44,14 +41,11 @@
 #include <unistd.h>
 #endif  //  GRPC_POSIX_SOCKET_UTILS_COMMON
 
+#include <grpc/support/log.h>
 #include <atomic>
 #include <cstring>
 
 #include "absl/status/status.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/event_engine/tcp_socket_utils.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/strerror.h"

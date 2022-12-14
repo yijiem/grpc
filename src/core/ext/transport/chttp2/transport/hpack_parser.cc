@@ -16,15 +16,14 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/transport/chttp2/transport/hpack_parser.h"
 
+#include <grpc/support/port_platform.h>
 #include <assert.h>
-#include <inttypes.h>
 #include <stddef.h>
 #include <stdlib.h>
-
+#include <grpc/status.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <string>
 #include <utility>
@@ -38,10 +37,6 @@
 #include "absl/types/optional.h"
 #include "absl/types/span.h"
 #include "absl/types/variant.h"
-
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/transport/chttp2/transport/decode_huff.h"
 #include "src/core/ext/transport/chttp2/transport/hpack_constants.h"
 #include "src/core/lib/debug/trace.h"

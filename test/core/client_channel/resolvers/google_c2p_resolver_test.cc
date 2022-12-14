@@ -15,7 +15,12 @@
 //
 
 #include <stddef.h>
-
+#include <grpc/grpc.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/create_channel.h>
+#include <grpcpp/security/credentials.h>
+#include <grpcpp/support/channel_arguments.h>
+#include <grpc/support/time.h>
 #include <functional>
 #include <memory>
 #include <string>
@@ -24,13 +29,6 @@
 
 #include "absl/strings/str_format.h"
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/create_channel.h>
-#include <grpcpp/security/credentials.h>
-#include <grpcpp/support/channel_arguments.h>
-
 #include "src/core/lib/gprpp/env.h"
 #include "test/core/util/fake_udp_and_tcp_server.h"
 #include "test/core/util/port.h"

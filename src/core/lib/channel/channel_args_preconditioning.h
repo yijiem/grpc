@@ -16,11 +16,9 @@
 #define GRPC_CORE_LIB_CHANNEL_CHANNEL_ARGS_PRECONDITIONING_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/grpc.h>
 #include <functional>
 #include <vector>
-
-#include <grpc/impl/grpc_types.h>
 
 #include "src/core/lib/channel/channel_args.h"
 

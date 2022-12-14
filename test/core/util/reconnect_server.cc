@@ -19,14 +19,11 @@
 #include "test/core/util/reconnect_server.h"
 
 #include <string.h>
-
-#include "absl/strings/string_view.h"
-
-#include <grpc/grpc.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
 
+#include "absl/strings/string_view.h"
 #include "src/core/lib/iomgr/endpoint.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/iomgr/iomgr_fwd.h"

@@ -17,9 +17,9 @@
  */
 
 #include <stdint.h>
-
 #include <grpc/grpc.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
 
 #include "test/core/end2end/cq_verifier.h"
 #include "test/core/end2end/end2end_tests.h"

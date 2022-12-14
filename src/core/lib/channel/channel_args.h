@@ -20,9 +20,9 @@
 #define GRPC_CORE_LIB_CHANNEL_CHANNEL_ARGS_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/grpc.h>
 #include <algorithm>  // IWYU pragma: keep
 #include <iosfwd>
 #include <memory>
@@ -33,10 +33,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
 #include "absl/types/variant.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/avl/avl.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/debug_location.h"

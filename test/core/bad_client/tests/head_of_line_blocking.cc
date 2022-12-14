@@ -18,13 +18,12 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <algorithm>
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <algorithm>
 
 #include "test/core/bad_client/bad_client.h"
 #include "test/core/end2end/cq_verifier.h"

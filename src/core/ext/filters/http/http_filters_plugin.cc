@@ -17,13 +17,10 @@
  */
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
+#include <grpc/grpc.h>
 
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/ext/filters/http/client/http_client_filter.h"
 #include "src/core/ext/filters/http/message_compress/compression_filter.h"
 #include "src/core/ext/filters/http/server/http_server_filter.h"

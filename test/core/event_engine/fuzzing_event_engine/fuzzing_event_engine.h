@@ -15,6 +15,10 @@
 #ifndef GRPC_TEST_CORE_EVENT_ENGINE_FUZZING_EVENT_ENGINE_H
 #define GRPC_TEST_CORE_EVENT_ENGINE_FUZZING_EVENT_ENGINE_H
 
+#include <grpc/event_engine/endpoint_config.h>
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/support/time.h>
 #include <chrono>
 #include <cstdint>
 #include <map>
@@ -26,12 +30,6 @@
 #include "absl/functional/any_invocable.h"
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-
-#include <grpc/event_engine/endpoint_config.h>
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/grpc.h>
-
 #include "src/core/lib/gprpp/sync.h"
 #include "test/core/event_engine/fuzzing_event_engine/fuzzing_event_engine.pb.h"
 

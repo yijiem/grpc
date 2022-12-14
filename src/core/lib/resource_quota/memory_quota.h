@@ -16,9 +16,10 @@
 #define GRPC_CORE_LIB_RESOURCE_QUOTA_MEMORY_QUOTA_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
-
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/event_engine/memory_request.h>
+#include <grpc/support/log.h>
 #include <array>
 #include <atomic>
 #include <cstddef>
@@ -31,11 +32,6 @@
 #include "absl/container/flat_hash_set.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/event_engine/memory_request.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/experiments/experiments.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/orphanable.h"
@@ -46,6 +42,8 @@
 #include "src/core/lib/promise/poll.h"
 #include "src/core/lib/resource_quota/periodic_update.h"
 #include "src/core/lib/resource_quota/trace.h"
+#include "absl/synchronization/mutex.h"
+#include "src/core/lib/debug/trace.h"
 
 namespace grpc_core {
 

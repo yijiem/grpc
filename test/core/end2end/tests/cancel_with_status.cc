@@ -19,9 +19,6 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
-
-#include <string>
-
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/propagation_bits.h>
 #include <grpc/slice.h>
@@ -29,6 +26,8 @@
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 #include <grpc/support/string_util.h>
+#include <grpc/support/time.h>
+#include <string>
 
 #include "src/core/lib/surface/event_string.h"
 #include "test/core/end2end/cq_verifier.h"

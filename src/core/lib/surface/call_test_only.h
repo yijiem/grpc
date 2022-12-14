@@ -20,11 +20,9 @@
 #define GRPC_CORE_LIB_SURFACE_CALL_TEST_ONLY_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
-
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
+#include <grpc/grpc.h>
 
 /** Return the message compression algorithm from \a call.
  *

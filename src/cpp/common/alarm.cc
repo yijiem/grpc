@@ -16,11 +16,6 @@
  */
 
 #include <grpc/support/port_platform.h>
-
-#include <functional>
-#include <utility>
-
-#include <grpc/impl/grpc_types.h>
 #include <grpc/support/log.h>
 #include <grpc/support/sync.h>
 #include <grpc/support/time.h>
@@ -28,6 +23,9 @@
 #include <grpcpp/completion_queue.h>
 #include <grpcpp/impl/completion_queue_tag.h>
 #include <grpcpp/impl/grpc_library.h>
+#include <grpc/grpc.h>
+#include <functional>
+#include <utility>
 
 #include "src/core/lib/gprpp/time.h"
 #include "src/core/lib/iomgr/closure.h"

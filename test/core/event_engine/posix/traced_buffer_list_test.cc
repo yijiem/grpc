@@ -15,14 +15,11 @@
 #include "src/core/lib/event_engine/posix_engine/traced_buffer_list.h"
 
 #include <time.h>
-
-#include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
 #include <grpc/support/atm.h>
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
 
+#include "gtest/gtest.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/time.h"
 #include "src/core/lib/iomgr/exec_ctx.h"

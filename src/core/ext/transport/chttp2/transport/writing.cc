@@ -17,21 +17,16 @@
  */
 
 #include <grpc/support/port_platform.h>
-
 #include <inttypes.h>
 #include <stddef.h>
-
+#include <grpc/slice.h>
+#include <grpc/slice_buffer.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <string>
 
 #include "absl/status/status.h"
 #include "absl/types/optional.h"
-
-#include <grpc/slice.h>
-#include <grpc/slice_buffer.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/transport/chttp2/transport/http_trace.h"
 
 // IWYU pragma: no_include "src/core/lib/gprpp/orphanable.h"

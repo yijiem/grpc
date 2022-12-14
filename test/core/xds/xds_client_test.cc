@@ -21,15 +21,16 @@
 #include "src/core/ext/xds/xds_client.h"
 
 #include <stdint.h>
-
+#include <google/protobuf/any.pb.h>
+#include <google/protobuf/struct.pb.h>
+#include <grpc/support/log.h>
+#include <grpcpp/impl/codegen/config_protobuf.h>
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <deque>
 #include <map>
 #include <memory>
 #include <string>
-
-#include <google/protobuf/any.pb.h>
-#include <google/protobuf/struct.pb.h>
 
 #include "absl/strings/str_cat.h"
 #include "absl/time/time.h"
@@ -38,10 +39,6 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "upb/def.h"
-
-#include <grpc/support/log.h>
-#include <grpcpp/impl/codegen/config_protobuf.h>
-
 #include "src/core/ext/xds/xds_bootstrap.h"
 #include "src/core/ext/xds/xds_resource_type_impl.h"
 #include "src/core/lib/event_engine/default_event_engine.h"

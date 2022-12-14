@@ -14,17 +14,13 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/xds_http_stateful_session_filter.h"
 
-#include <stdint.h>
-
+#include <grpc/support/port_platform.h>
 #include <string>
 #include <utility>
 
 #include "absl/status/statusor.h"
-#include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/variant.h"
 #include "envoy/config/core/v3/extension.upb.h"
@@ -33,23 +29,16 @@
 #include "envoy/extensions/http/stateful_session/cookie/v3/cookie.upb.h"
 #include "envoy/extensions/http/stateful_session/cookie/v3/cookie.upbdefs.h"
 #include "envoy/type/http/v3/cookie.upb.h"
-#include "envoy/type/v3/percent.upb.h"
-#include "google/protobuf/wrappers.upb.h"
 #include "upb/def.h"
-
-#include <grpc/status.h>
-
 #include "src/core/ext/filters/stateful_session/stateful_session_filter.h"
 #include "src/core/ext/filters/stateful_session/stateful_session_service_config_parser.h"
 #include "src/core/ext/xds/upb_utils.h"
 #include "src/core/ext/xds/xds_common_types.h"
 #include "src/core/ext/xds/xds_http_filters.h"
 #include "src/core/lib/channel/channel_args.h"
-#include "src/core/lib/channel/status_util.h"
 #include "src/core/lib/gprpp/time.h"
 #include "src/core/lib/gprpp/validation_errors.h"
 #include "src/core/lib/json/json.h"
-#include "src/core/lib/transport/status_conversion.h"
 
 namespace grpc_core {
 

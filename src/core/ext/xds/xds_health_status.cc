@@ -14,11 +14,13 @@
 // limitations under the License.
 //
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/xds/xds_health_status.h"
 
+#include <grpc/support/port_platform.h>
+
 #include "envoy/config/core/v3/health_check.upb.h"
+#include "absl/strings/str_cat.h"
+#include "src/core/lib/gpr/useful.h"
 
 namespace grpc_core {
 

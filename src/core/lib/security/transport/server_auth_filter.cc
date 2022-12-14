@@ -17,23 +17,18 @@
  */
 
 #include <grpc/support/port_platform.h>
-
 #include <string.h>
-
-#include <algorithm>
-#include <new>
-
-#include "absl/status/status.h"
-
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/atm.h>
 #include <grpc/support/log.h>
+#include <algorithm>
+#include <new>
 
+#include "absl/status/status.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/channel/context.h"

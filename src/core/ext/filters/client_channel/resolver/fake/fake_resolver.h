@@ -18,12 +18,10 @@
 #define GRPC_CORE_EXT_FILTERS_CLIENT_CHANNEL_RESOLVER_FAKE_FAKE_RESOLVER_H
 
 #include <grpc/support/port_platform.h>
+#include <grpc/grpc.h>
 
 #include "absl/base/thread_annotations.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/ref_counted.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

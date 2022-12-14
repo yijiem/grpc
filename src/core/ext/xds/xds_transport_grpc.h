@@ -18,17 +18,14 @@
 #define GRPC_CORE_EXT_XDS_XDS_TRANSPORT_GRPC_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/grpc.h>
 #include <functional>
 #include <memory>
 #include <string>
 
 #include "absl/status/status.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-
 #include "src/core/ext/xds/xds_bootstrap.h"
 #include "src/core/ext/xds/xds_transport.h"
 #include "src/core/lib/channel/channel_args.h"

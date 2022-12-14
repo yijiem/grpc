@@ -16,21 +16,17 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/security/credentials/tls/tls_credentials.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/grpc.h>
+#include <grpc/grpc_security_constants.h>
+#include <grpc/support/log.h>
 #include <string>
 #include <utility>
 
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc.h>
-#include <grpc/grpc_security_constants.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/security/credentials/tls/grpc_tls_certificate_verifier.h"

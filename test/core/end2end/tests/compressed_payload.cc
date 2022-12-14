@@ -18,11 +18,6 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <string>
-
-#include "absl/strings/str_format.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/compression.h>
 #include <grpc/grpc.h>
@@ -30,7 +25,10 @@
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <string>
 
+#include "absl/strings/str_format.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/bitset.h"

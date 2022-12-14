@@ -19,13 +19,12 @@
 #ifndef GRPC_INTERNAL_CPP_CLIENT_CREATE_CHANNEL_INTERNAL_H
 #define GRPC_INTERNAL_CPP_CLIENT_CREATE_CHANNEL_INTERNAL_H
 
+#include <grpcpp/channel.h>
+#include <grpcpp/support/client_interceptor.h>
+#include <grpc/grpc.h>
 #include <memory>
 #include <string>
 #include <vector>
-
-#include <grpc/impl/grpc_types.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/support/client_interceptor.h>
 
 namespace grpc {
 

@@ -15,12 +15,7 @@
  *
  */
 
-#include <vector>
-
-#include "absl/base/thread_annotations.h"
-
 #include <grpc/grpc.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/support/cpu.h>
 #include <grpc/support/log.h>
 #include <grpc/support/sync.h>
@@ -28,7 +23,9 @@
 #include <grpcpp/completion_queue.h>
 #include <grpcpp/impl/completion_queue_tag.h>
 #include <grpcpp/impl/grpc_library.h>
+#include <vector>
 
+#include "absl/base/thread_annotations.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/gprpp/thd.h"

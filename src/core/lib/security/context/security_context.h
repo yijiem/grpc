@@ -20,18 +20,14 @@
 #define GRPC_CORE_LIB_SECURITY_CONTEXT_SECURITY_CONTEXT_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
+#include <grpc/grpc_security.h>
+#include <grpc/support/alloc.h>
+#include <grpc/grpc.h>
 #include <memory>
 #include <utility>
 
 #include "absl/strings/string_view.h"
-
-#include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/alloc.h>
-
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/debug_location.h"

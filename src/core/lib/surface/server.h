@@ -18,10 +18,12 @@
 #define GRPC_CORE_LIB_SURFACE_SERVER_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
 #include <stdint.h>
-
+#include <grpc/grpc.h>
+#include <grpc/slice.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 #include <atomic>
 #include <functional>
 #include <list>
@@ -33,13 +35,6 @@
 #include "absl/base/thread_annotations.h"
 #include "absl/status/statusor.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"

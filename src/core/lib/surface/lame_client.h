@@ -20,15 +20,12 @@
 #define GRPC_CORE_LIB_SURFACE_LAME_CLIENT_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/grpc.h>
 #include <memory>
 
 #include "absl/base/thread_annotations.h"
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/promise_based_filter.h"

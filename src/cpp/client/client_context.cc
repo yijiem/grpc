@@ -17,17 +17,9 @@
  */
 
 #include <stdlib.h>
-
-#include <map>
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
-
 #include <grpc/compression.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
@@ -40,6 +32,11 @@
 #include <grpcpp/security/credentials.h>
 #include <grpcpp/server_context.h>
 #include <grpcpp/support/client_interceptor.h>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 namespace grpc {
 

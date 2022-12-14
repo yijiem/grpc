@@ -23,10 +23,11 @@
 // server initial metadata latch.
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <atomic>
 #include <memory>
 #include <new>
@@ -38,11 +39,6 @@
 #include "absl/status/status.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/channel/call_finalization.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"

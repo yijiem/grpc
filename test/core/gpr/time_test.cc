@@ -21,12 +21,9 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
-
-#include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
 #include <grpc/support/time.h>
 
+#include "gtest/gtest.h"
 #include "test/core/util/test_config.h"
 
 static void to_fp(void* arg, const char* buf, size_t len) {

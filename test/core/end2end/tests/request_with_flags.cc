@@ -18,18 +18,16 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <string>
-
-#include "absl/strings/str_cat.h"
-
 #include <grpc/byte_buffer.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/codegen/propagation_bits.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <string>
 
+#include "absl/strings/str_cat.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/transport/transport.h"
 #include "test/core/end2end/cq_verifier.h"

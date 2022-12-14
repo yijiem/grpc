@@ -17,15 +17,13 @@
  */
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
 #include <grpc/byte_buffer.h>
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/slice.h>
 #include <grpc/slice_buffer.h>
 #include <grpc/support/alloc.h>
+#include <grpc/grpc.h>
 
 #include "src/core/lib/iomgr/exec_ctx.h"
 #include "src/core/lib/slice/slice.h"

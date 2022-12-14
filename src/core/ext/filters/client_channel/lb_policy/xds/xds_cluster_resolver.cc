@@ -15,10 +15,12 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <inttypes.h>
 #include <stddef.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/impl/connectivity_state.h>
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -33,12 +35,6 @@
 #include "absl/strings/str_join.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/impl/connectivity_state.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/address_filtering.h"
 #include "src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h"
 #include "src/core/ext/filters/client_channel/lb_policy/xds/xds_attributes.h"

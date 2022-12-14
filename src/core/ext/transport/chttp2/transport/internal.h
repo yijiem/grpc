@@ -20,19 +20,15 @@
 #define GRPC_CORE_EXT_TRANSPORT_CHTTP2_TRANSPORT_INTERNAL_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
 #include <stdint.h>
-
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/slice.h>
+#include <grpc/grpc.h>
 #include <string>
 
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-
 #include "src/core/ext/transport/chttp2/transport/flow_control.h"
 #include "src/core/ext/transport/chttp2/transport/frame.h"
 #include "src/core/ext/transport/chttp2/transport/frame_goaway.h"

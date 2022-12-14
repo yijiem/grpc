@@ -20,9 +20,9 @@
 #define GRPC_CORE_LIB_HTTP_HTTPCLI_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
-
+#include <grpc/grpc.h>
+#include <grpc/slice.h>
 #include <functional>
 #include <memory>
 #include <vector>
@@ -31,11 +31,6 @@
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-
 #include "src/core/lib/gprpp/debug_location.h"
 #include "src/core/lib/gprpp/orphanable.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

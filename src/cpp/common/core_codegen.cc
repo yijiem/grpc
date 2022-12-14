@@ -18,17 +18,4 @@
 
 #include <grpc/support/port_platform.h>
 
-#include <stdlib.h>
-
-#include <grpc/byte_buffer.h>
-#include <grpc/grpc.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/slice_buffer.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
-#include <grpcpp/impl/codegen/core_codegen.h>
-#include <grpcpp/support/status.h>
-
 namespace grpc {}  // namespace grpc

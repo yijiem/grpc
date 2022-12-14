@@ -15,14 +15,14 @@
 //
 
 #include <stdint.h>
-
+#include <google/protobuf/wrappers.pb.h>
+#include <grpc/grpc.h>
+#include <grpc/support/log.h>
 #include <limits>
 #include <map>
 #include <memory>
 #include <string>
 #include <utility>
-
-#include <google/protobuf/wrappers.pb.h>
 
 #include "absl/status/status.h"
 #include "absl/status/statusor.h"
@@ -30,10 +30,6 @@
 #include "gtest/gtest.h"
 #include "upb/def.hpp"
 #include "upb/upb.hpp"
-
-#include <grpc/grpc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/xds/xds_bootstrap.h"
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_client.h"
@@ -53,6 +49,7 @@
 #include "src/proto/grpc/testing/xds/v3/percent.pb.h"
 #include "test/core/util/scoped_env_var.h"
 #include "test/core/util/test_config.h"
+#include "src/proto/grpc/testing/xds/v3/health_check.pb.h"
 
 using envoy::config::endpoint::v3::ClusterLoadAssignment;
 

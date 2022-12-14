@@ -19,17 +19,8 @@
 #include <limits.h>
 #include <stdint.h>
 #include <string.h>
-
-#include <algorithm>
-#include <iterator>
-#include <memory>
-#include <string>
-#include <utility>
-#include <vector>
-
 #include <grpc/grpc.h>
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/support/log.h>
 #include <grpc/support/sync.h>
 #include <grpc/support/workaround_list.h>
@@ -46,6 +37,12 @@
 #include <grpcpp/server_interface.h>
 #include <grpcpp/support/channel_arguments.h>
 #include <grpcpp/support/server_interceptor.h>
+#include <algorithm>
+#include <iterator>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "src/core/lib/gpr/string.h"
 #include "src/core/lib/gpr/useful.h"

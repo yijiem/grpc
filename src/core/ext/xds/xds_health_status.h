@@ -18,12 +18,13 @@
 #define GRPC_CORE_EXT_XDS_XDS_HEALTH_STATUS_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stdint.h>
+#include <memory>
+#include <string>
 
 #include "absl/types/optional.h"
-
 #include "src/core/lib/resolver/server_address.h"
+#include "absl/strings/string_view.h"
 
 namespace grpc_core {
 

@@ -16,12 +16,10 @@
 #define GRPC_CORE_LIB_SECURITY_AUTHORIZATION_AUTHORIZATION_POLICY_PROVIDER_H
 
 #include <grpc/support/port_platform.h>
+#include <grpc/grpc_security.h>
+#include <grpc/grpc.h>
 
 #include "absl/strings/string_view.h"
-
-#include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/dual_ref_counted.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

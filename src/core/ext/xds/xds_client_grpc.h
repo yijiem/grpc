@@ -18,14 +18,11 @@
 #define GRPC_CORE_EXT_XDS_XDS_CLIENT_GRPC_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/grpc.h>
 #include <memory>
 
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/ext/xds/certificate_provider_store.h"
 #include "src/core/ext/xds/xds_bootstrap_grpc.h"
 #include "src/core/ext/xds/xds_client.h"

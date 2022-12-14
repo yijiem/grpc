@@ -14,14 +14,11 @@
 
 #include "src/core/ext/transport/chttp2/transport/flow_control.h"
 
+#include <grpc/support/time.h>
 #include <memory>
 #include <tuple>
 
 #include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
-#include <grpc/support/time.h>
-
 #include "src/core/lib/experiments/experiments.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"

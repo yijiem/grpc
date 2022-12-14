@@ -16,10 +16,10 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/http/server/http_server_filter.h"
 
+#include <grpc/support/port_platform.h>
+#include <grpc/grpc.h>
 #include <functional>
 #include <memory>
 #include <utility>
@@ -28,9 +28,6 @@
 #include "absl/meta/type_traits.h"
 #include "absl/status/status.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_stack.h"
 #include "src/core/lib/promise/context.h"

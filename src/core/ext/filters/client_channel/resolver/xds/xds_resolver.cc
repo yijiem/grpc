@@ -15,10 +15,9 @@
 //
 
 #include <grpc/support/port_platform.h>
-
 #include <stdlib.h>
 #include <string.h>
-
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <cstdint>
 #include <map>
@@ -41,17 +40,14 @@
 #include "absl/types/optional.h"
 #include "absl/types/variant.h"
 #include "re2/re2.h"
-
 #include "src/core/lib/gprpp/unique_type_name.h"
 
 #define XXH_INLINE_ALL
-#include "xxhash.h"
-
-#include <grpc/impl/grpc_types.h>
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/log.h>
 
+#include "xxhash.h"
 #include "src/core/ext/filters/client_channel/config_selector.h"
 #include "src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h"
 #include "src/core/ext/xds/xds_bootstrap.h"

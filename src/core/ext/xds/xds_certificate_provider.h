@@ -20,7 +20,8 @@
 #define GRPC_CORE_EXT_XDS_XDS_CERTIFICATE_PROVIDER_H
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/grpc_security.h>
+#include <grpc/grpc.h>
 #include <map>
 #include <memory>
 #include <string>
@@ -28,10 +29,6 @@
 
 #include "absl/base/thread_annotations.h"
 #include "absl/strings/string_view.h"
-
-#include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
-
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/sync.h"

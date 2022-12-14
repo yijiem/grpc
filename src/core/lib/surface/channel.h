@@ -20,10 +20,13 @@
 #define GRPC_CORE_LIB_SURFACE_CHANNEL_H
 
 #include <grpc/support/port_platform.h>
-
 #include <stddef.h>
 #include <stdint.h>
-
+#include <grpc/event_engine/event_engine.h>
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/impl/compression_types.h>
+#include <grpc/slice.h>
+#include <grpc/grpc.h>
 #include <atomic>
 #include <map>
 #include <string>
@@ -33,13 +36,6 @@
 #include "absl/status/statusor.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/event_engine/event_engine.h>
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/channel/channel_fwd.h"
 #include "src/core/lib/channel/channel_stack.h"  // IWYU pragma: keep

@@ -16,15 +16,13 @@
  *
  */
 
-#include <memory>
-#include <string>
-
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/support/log.h>
 #include <grpcpp/security/auth_metadata_processor.h>
 #include <grpcpp/security/server_credentials.h>
+#include <memory>
+#include <string>
 
 namespace grpc {
 namespace {

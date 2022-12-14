@@ -19,9 +19,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-
-#include <string>
-
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
 #include <grpc/impl/codegen/propagation_bits.h>
@@ -30,6 +27,8 @@
 #include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 #include <grpc/support/string_util.h>
+#include <grpc/support/time.h>
+#include <string>
 
 #include "src/core/lib/gprpp/global_config_generic.h"
 #include "src/core/lib/gprpp/host_port.h"

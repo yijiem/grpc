@@ -20,12 +20,10 @@
 
 #include "src/core/lib/gprpp/thd.h"
 
-#include "gtest/gtest.h"
-
-#include <grpc/grpc.h>
 #include <grpc/support/sync.h>
 #include <grpc/support/time.h>
 
+#include "gtest/gtest.h"
 #include "test/core/util/test_config.h"
 
 #define NUM_THREADS 100

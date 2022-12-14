@@ -49,10 +49,9 @@
 /// \see https://github.com/grpc/grpc/blob/master/doc/load-balancing.md for the
 /// high level design and details.
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb.h"
 
+#include <grpc/support/port_platform.h>
 #include <grpc/event_engine/event_engine.h>
 
 // IWYU pragma: no_include <sys/socket.h>
@@ -60,7 +59,15 @@
 #include <inttypes.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <grpc/byte_buffer.h>
+#include <grpc/byte_buffer_reader.h>
+#include <grpc/grpc.h>
+#include <grpc/impl/codegen/propagation_bits.h>
+#include <grpc/impl/connectivity_state.h>
+#include <grpc/slice.h>
+#include <grpc/status.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
 #include <algorithm>
 #include <map>
 #include <memory>
@@ -79,18 +86,6 @@
 #include "absl/types/optional.h"
 #include "absl/types/variant.h"
 #include "upb/upb.hpp"
-
-#include <grpc/byte_buffer.h>
-#include <grpc/byte_buffer_reader.h>
-#include <grpc/grpc.h>
-#include <grpc/impl/codegen/propagation_bits.h>
-#include <grpc/impl/connectivity_state.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/client_channel.h"
 #include "src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h"
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/client_load_reporting_filter.h"

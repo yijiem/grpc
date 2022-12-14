@@ -15,7 +15,8 @@
 //
 
 #include <grpc/support/port_platform.h>
-
+#include <grpc/support/log.h>
+#include <grpc/grpc.h>
 #include <algorithm>
 #include <memory>
 #include <string>
@@ -29,10 +30,6 @@
 #include "absl/strings/string_view.h"
 #include "absl/strings/strip.h"
 #include "absl/types/optional.h"
-
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/log.h>
-
 #include "src/core/ext/filters/client_channel/resolver/dns/dns_resolver_selection.h"
 #include "src/core/ext/filters/client_channel/resolver/polling_resolver.h"
 #include "src/core/lib/backoff/backoff.h"

@@ -18,11 +18,7 @@
 
 #include <stdint.h>
 #include <string.h>
-
-#include <string>
-
 #include <gtest/gtest.h>
-
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>
 #include <grpc/grpc_security_constants.h>
@@ -30,6 +26,8 @@
 #include <grpc/slice.h>
 #include <grpc/status.h>
 #include <grpc/support/log.h>
+#include <grpc/support/time.h>
+#include <string>
 
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/useful.h"

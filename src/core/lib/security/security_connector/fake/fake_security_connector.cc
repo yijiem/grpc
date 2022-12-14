@@ -16,13 +16,15 @@
  *
  */
 
-#include <grpc/support/port_platform.h>
-
 #include "src/core/lib/security/security_connector/fake/fake_security_connector.h"
 
+#include <grpc/support/port_platform.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <grpc/grpc_security_constants.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
+#include <grpc/support/string_util.h>
 #include <string>
 #include <utility>
 
@@ -30,13 +32,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/strings/string_view.h"
 #include "absl/types/optional.h"
-
-#include <grpc/grpc_security_constants.h>
-#include <grpc/impl/grpc_types.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-#include <grpc/support/string_util.h>
-
 #include "src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb.h"
 #include "src/core/lib/channel/channel_args.h"
 #include "src/core/lib/gpr/string.h"

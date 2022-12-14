@@ -19,7 +19,11 @@
 #include "src/core/ext/transport/chttp2/transport/hpack_parser.h"
 
 #include <stdlib.h>
-
+#include <grpc/event_engine/memory_allocator.h>
+#include <grpc/grpc.h>
+#include <grpc/slice.h>
+#include <grpc/support/alloc.h>
+#include <grpc/support/log.h>
 #include <memory>
 #include <string>
 
@@ -27,14 +31,6 @@
 #include "absl/strings/str_cat.h"
 #include "absl/types/optional.h"
 #include "gtest/gtest.h"
-
-#include <grpc/event_engine/memory_allocator.h>
-#include <grpc/grpc.h>
-#include <grpc/slice.h>
-#include <grpc/status.h>
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/exec_ctx.h"

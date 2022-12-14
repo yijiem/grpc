@@ -17,22 +17,9 @@
  */
 
 #include <assert.h>
-
-#include <atomic>
-#include <cstdlib>
-#include <functional>
-#include <map>
-#include <new>
-#include <string>
-#include <utility>
-#include <vector>
-
-#include "absl/strings/string_view.h"
-
 #include <grpc/compression.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/load_reporting.h>
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
@@ -53,7 +40,16 @@
 #include <grpcpp/support/server_callback.h>
 #include <grpcpp/support/server_interceptor.h>
 #include <grpcpp/support/string_ref.h>
+#include <atomic>
+#include <cstdlib>
+#include <functional>
+#include <map>
+#include <new>
+#include <string>
+#include <utility>
+#include <vector>
 
+#include "absl/strings/string_view.h"
 #include "src/core/lib/gprpp/ref_counted.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/resource_quota/arena.h"

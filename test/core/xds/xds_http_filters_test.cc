@@ -16,14 +16,17 @@
 
 #include "src/core/ext/xds/xds_http_filters.h"
 
+#include <google/protobuf/any.pb.h>
+#include <google/protobuf/duration.pb.h>
+#include <google/protobuf/wrappers.pb.h>
+#include <grpc/grpc.h>
+#include <grpc/status.h>
+#include <grpc/support/log.h>
+#include <grpcpp/impl/codegen/config_protobuf.h>
 #include <algorithm>
 #include <string>
 #include <utility>
 #include <vector>
-
-#include <google/protobuf/any.pb.h>
-#include <google/protobuf/duration.pb.h>
-#include <google/protobuf/wrappers.pb.h>
 
 #include "absl/status/status.h"
 #include "absl/strings/strip.h"
@@ -31,12 +34,6 @@
 #include "gtest/gtest.h"
 #include "upb/def.hpp"
 #include "upb/upb.hpp"
-
-#include <grpc/grpc.h>
-#include <grpc/status.h>
-#include <grpc/support/log.h>
-#include <grpcpp/impl/codegen/config_protobuf.h>
-
 #include "src/core/ext/filters/fault_injection/fault_injection_filter.h"
 #include "src/core/ext/filters/fault_injection/fault_injection_service_config_parser.h"
 #include "src/core/ext/filters/rbac/rbac_filter.h"
@@ -62,6 +59,8 @@
 #include "src/proto/grpc/testing/xds/v3/string.pb.h"
 #include "src/proto/grpc/testing/xds/v3/typed_struct.pb.h"
 #include "test/core/util/test_config.h"
+#include "src/proto/grpc/testing/xds/v3/cookie.pb.h"
+#include "src/proto/grpc/testing/xds/v3/extension.pb.h"
 
 // IWYU pragma: no_include <google/protobuf/message.h>
 

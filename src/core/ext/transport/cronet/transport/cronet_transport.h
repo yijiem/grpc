@@ -20,8 +20,7 @@
 #define GRPC_CORE_EXT_TRANSPORT_CRONET_TRANSPORT_CRONET_TRANSPORT_H
 
 #include <grpc/support/port_platform.h>
-
-#include <grpc/impl/grpc_types.h>
+#include <grpc/grpc.h>
 
 #include "src/core/lib/transport/transport_fwd.h"
 
