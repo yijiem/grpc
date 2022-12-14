@@ -15,7 +15,6 @@
 //
 
 #include <grpc/grpc.h>
-#include <gtest/gtest.h>
 #include <array>
 #include <memory>
 #include <string>
