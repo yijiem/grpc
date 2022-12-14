@@ -22,14 +22,29 @@ export PATH=${PATH}:${IWYU_ROOT}/iwyu_build/bin
 # number of CPUs available
 CPU_COUNT=`nproc`
 
+CLANG_VERSION=$(clang --version | grep version | sed -nE 's/.*version ([0-9]*)\..*/\1/p')
+case $CLANG_VERSION in
+  "14")
+    echo "clang 14"
+    IWYU_COMMIT="abd5d2bd6320867d3605227a7f798a4e08fef896"
+    ;;
+  "15")
+    echo "clang 15"
+    IWYU_COMMIT="7f0b6c304acf69c42bb7f6e03c63f836924cb7e0"
+    ;;
+  *)
+    echo "Unsupported clang version" $CLANG_VERSION
+    exit 1
+esac
+
 rm -rf iwyu || true
 git clone https://github.com/include-what-you-use/include-what-you-use.git iwyu
 # latest commit on the clang 15 branch
 cd ${IWYU_ROOT}/iwyu
-git checkout 7f0b6c304acf69c42bb7f6e03c63f836924cb7e0
+git checkout $IWYU_COMMIT
 mkdir -p ${IWYU_ROOT}/iwyu_build
 cd ${IWYU_ROOT}/iwyu_build
-cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ROOT_DIR=/usr/lib/llvm-15 ${IWYU_ROOT}/iwyu 
+cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ROOT_DIR=/usr/lib/llvm-$CLANG_VERSION ${IWYU_ROOT}/iwyu
 make -j $CPU_COUNT
 cd ${IWYU_ROOT}
 
