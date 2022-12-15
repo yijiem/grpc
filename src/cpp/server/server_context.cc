@@ -32,7 +32,6 @@
 #include <grpc/compression.h>
 #include <grpc/grpc.h>
 #include <grpc/impl/compression_types.h>
-#include <grpc/impl/grpc_types.h>
 #include <grpc/load_reporting.h>
 #include <grpc/status.h>
 #include <grpc/support/alloc.h>
