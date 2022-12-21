@@ -39,6 +39,7 @@
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/iomgr/exec_ctx.h"
 
 static uint8_t* fill_header(uint8_t* out, uint32_t length, uint8_t flags) {
@@ -143,6 +144,12 @@ grpc_error_handle grpc_chttp2_settings_parser_parse(void* p,
             grpc_chttp2_initiate_write(t,
                                        GRPC_CHTTP2_INITIATE_WRITE_SETTINGS_ACK);
             if (t->notify_on_receive_settings != nullptr) {
+              absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+              if (stacktrace.has_value()) {
+                gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+              } else {
+                gpr_log(GPR_DEBUG, "stacktrace unavailable");
+              }
               grpc_core::ExecCtx::Run(DEBUG_LOCATION,
                                       t->notify_on_receive_settings,
                                       absl::OkStatus());

@@ -55,6 +55,7 @@
 #include "src/core/lib/debug/trace.h"
 #include "src/core/lib/event_engine/channel_args_endpoint_config.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/orphanable.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/status_helper.h"
@@ -409,6 +410,7 @@ void Chttp2ServerListener::ActiveConnection::HandshakingState::Start(
 
 void Chttp2ServerListener::ActiveConnection::HandshakingState::OnTimeout(
     void* arg, grpc_error_handle error) {
+  gpr_log(GPR_INFO, "OnTimeout: error: %s", grpc_core::StatusToString(error).c_str());
   HandshakingState* self = static_cast<HandshakingState*>(arg);
   // Note that we may be called with absl::OkStatus() when the timer fires
   // or with an error indicating that the timer system is being shut down.
@@ -427,7 +429,14 @@ void Chttp2ServerListener::ActiveConnection::HandshakingState::OnTimeout(
 }
 
 void Chttp2ServerListener::ActiveConnection::HandshakingState::
-    OnReceiveSettings(void* arg, grpc_error_handle /* error */) {
+    OnReceiveSettings(void* arg, grpc_error_handle error/* error */) {
+  gpr_log(GPR_INFO, "OnReceiveSettings: error %s: cancel timer", grpc_core::StatusToString(error).c_str());
+  absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+  if (stacktrace.has_value()) {
+    gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+  } else {
+    gpr_log(GPR_DEBUG, "stacktrace unavailable");
+  }
   HandshakingState* self = static_cast<HandshakingState*>(arg);
   grpc_timer_cancel(&self->timer_);
   self->Unref();

@@ -66,6 +66,7 @@
 #include "src/core/lib/gpr/useful.h"
 #include "src/core/lib/gprpp/bitset.h"
 #include "src/core/lib/gprpp/debug_location.h"
+#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/ref_counted.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/gprpp/time.h"
@@ -621,6 +622,12 @@ static void close_transport_locked(grpc_chttp2_transport* t,
     grpc_endpoint_shutdown(t->ep, error);
   }
   if (t->notify_on_receive_settings != nullptr) {
+    absl::optional<std::string> stacktrace = grpc_core::GetCurrentStackTrace();
+    if (stacktrace.has_value()) {
+      gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+    } else {
+      gpr_log(GPR_DEBUG, "stacktrace unavailable");
+    }
     grpc_core::ExecCtx::Run(DEBUG_LOCATION, t->notify_on_receive_settings,
                             error);
     t->notify_on_receive_settings = nullptr;

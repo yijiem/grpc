@@ -4872,6 +4872,7 @@ grpc_cc_library(
         "channel_args",
         "closure",
         "error",
+        "examine_stack",
         "grpc_insecure_credentials",
         "handshaker_registry",
         "iomgr_fwd",
