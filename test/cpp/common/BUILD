@@ -39,6 +39,7 @@ grpc_cc_test(
         "gtest",
     ],
     flaky = True,
+    linkstatic = 1,
     deps = [
         "//:grpc++",
         "//src/core:closure",

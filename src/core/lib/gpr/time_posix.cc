@@ -32,8 +32,6 @@
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
 
-#include <iostream>
-
 static struct timespec timespec_from_gpr(gpr_timespec gts) {
   struct timespec rv;
   if (sizeof(time_t) < sizeof(int64_t)) {
@@ -67,8 +65,6 @@ static const clockid_t clockid_for_gpr_clock[] = {CLOCK_MONOTONIC,
 void gpr_time_init(void) { gpr_precise_clock_init(); }
 
 static gpr_timespec now_impl(gpr_clock_type clock_type) {
-  gpr_log(GPR_INFO, "here or not?");
-  std::cout << "clock_type: " << clock_type << std::endl;
   struct timespec now;
   GPR_ASSERT(clock_type != GPR_TIMESPAN);
   if (clock_type == GPR_CLOCK_PRECISE) {
