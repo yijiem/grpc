@@ -34,6 +34,31 @@
 #include "src/core/lib/iomgr/ev_posix.h"
 #endif
 
+#include <string.h>
+
+#include <fstream>
+#include <iostream>
+#include <ostream>
+
+constexpr char kProcSelfMaps[] = "/proc/self/maps";
+
+void PrintSelfMemoryMap() {
+  std::ifstream in_file(kProcSelfMaps);
+  if (!in_file) {
+    return;
+  }
+  char buf[1024];
+  while (!in_file.eof()) {
+    std::streamsize n = sizeof(buf);
+    memset(buf, 0, n);
+    in_file.getline(buf, n);
+    if (!in_file.eof() && in_file.fail()) {
+      return;
+    }
+    std::cout << buf << std::endl;
+  }
+}
+
 // MAYBE_SKIP_TEST is a macro to determine if this particular test configuration
 // should be skipped based on a decision made at SetUp time.
 #define MAYBE_SKIP_TEST \
@@ -246,6 +271,7 @@ TEST_F(TimerTest, DISABLED_CancelNextTimer) {
 }
 
 int main(int argc, char** argv) {
+  PrintSelfMemoryMap();
   grpc::testing::TestEnvironment env(&argc, argv);
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
