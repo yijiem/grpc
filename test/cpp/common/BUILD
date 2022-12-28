@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//bazel:grpc_build_system.bzl", "grpc_cc_test", "grpc_package")
+load("//bazel:grpc_build_system.bzl", "grpc_cc_test", "grpc_package", "grpc_cc_binary")
 
 licenses(["notice"])
 
@@ -135,4 +135,9 @@ grpc_cc_test(
         "//test/core/util:grpc_test_util",
         "//test/cpp/util:test_util",
     ],
+)
+
+grpc_cc_binary(
+    name = "set_a_day_back",
+    srcs = ["set_a_day_back.c"],
 )

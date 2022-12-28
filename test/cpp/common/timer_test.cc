@@ -160,6 +160,35 @@ TEST_F(TimerTest, MultipleTimersExpire) {
   gpr_log(GPR_DEBUG, "wakeups: %" PRId64 "", wakeups);
 }
 
+struct Args {
+  grpc_timer timer;
+  int timer_fired = 0;
+};
+void ScheduleTimer(Args* args) {
+  grpc_timer_init(
+      &args->timer,
+      grpc_core::Timestamp::Now() + grpc_core::Duration::Milliseconds(500),
+      GRPC_CLOSURE_CREATE(
+          [](void* arg, grpc_error_handle) {
+            Args* args = static_cast<Args*>(arg);
+            ++(args->timer_fired);
+            std::cout << "timer progress, timer_fired: " << args->timer_fired
+                      << std::endl;
+            ScheduleTimer(args);
+          },
+          args, grpc_schedule_on_exec_ctx));
+}
+
+TEST_F(TimerTest, ForeverTimers) {
+  MAYBE_SKIP_TEST;
+  grpc_core::ExecCtx exec_ctx;
+  Args args;
+  ScheduleTimer(&args);
+  gpr_sleep_until(grpc_timeout_seconds_to_deadline(1500));
+  int64_t wakeups = grpc_timer_manager_get_wakeups_testonly();
+  gpr_log(GPR_DEBUG, "wakeups: %" PRId64 "", wakeups);
+}
+
 TEST_F(TimerTest, CancelSomeTimers) {
   MAYBE_SKIP_TEST;
   grpc_core::ExecCtx exec_ctx;

@@ -28,9 +28,16 @@
 #ifdef __linux__
 #include <sys/syscall.h>
 #endif
+#include <iostream>
+#include <ostream>
+
+#include "absl/types/optional.h"
+
 #include <grpc/support/atm.h>
 #include <grpc/support/log.h>
 #include <grpc/support/time.h>
+
+#include "src/core/lib/gprpp/examine_stack.h"
 
 static struct timespec timespec_from_gpr(gpr_timespec gts) {
   struct timespec rv;
@@ -65,6 +72,16 @@ static const clockid_t clockid_for_gpr_clock[] = {CLOCK_MONOTONIC,
 void gpr_time_init(void) { gpr_precise_clock_init(); }
 
 static gpr_timespec now_impl(gpr_clock_type clock_type) {
+  if (clock_type == GPR_CLOCK_REALTIME) {
+    // absl::optional<std::string> stacktrace =
+    // grpc_core::GetCurrentStackTrace(); if (stacktrace.has_value()) {
+    // std::cout << *stacktrace << std::endl;
+    // gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
+    // } else {
+    // std::cout << "stacktrace unavailable" << std::endl;
+    // gpr_log(GPR_DEBUG, "stacktrace unavailable");
+    // }
+  }
   struct timespec now;
   GPR_ASSERT(clock_type != GPR_TIMESPAN);
   if (clock_type == GPR_CLOCK_PRECISE) {
