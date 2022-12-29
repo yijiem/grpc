@@ -47,9 +47,6 @@
 using ::grpc_event_engine::experimental::EventEngine;
 using ::grpc_event_engine::experimental::GetDefaultEventEngine;
 
-using ::grpc_event_engine::experimental::EventEngine;
-using ::grpc_event_engine::experimental::GetDefaultEventEngine;
-
 typedef struct passthru_endpoint passthru_endpoint;
 
 typedef struct {
