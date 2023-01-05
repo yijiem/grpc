@@ -500,15 +500,14 @@ static void sched_next_channel_action_locked(half* m) {
     shutdown_locked(m, err);
     return;
   }
-  m->parent->channel_effects->timer_handle =
-      GetDefaultEventEngine()->RunAfter(
-          grpc_core::Duration::Milliseconds(
-              m->parent->channel_effects->actions[0].wait_ms),
-          [m] {
-            grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
-            grpc_core::ExecCtx exec_ctx;
-            do_next_sched_channel_action(m, absl::OkStatus());
-          });
+  m->parent->channel_effects->timer_handle = GetDefaultEventEngine()->RunAfter(
+      grpc_core::Duration::Milliseconds(
+          m->parent->channel_effects->actions[0].wait_ms),
+      [m] {
+        grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+        grpc_core::ExecCtx exec_ctx;
+        do_next_sched_channel_action(m, absl::OkStatus());
+      });
 }
 
 void start_scheduling_grpc_passthru_endpoint_channel_effects(
