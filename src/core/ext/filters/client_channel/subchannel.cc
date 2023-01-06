@@ -879,6 +879,9 @@ void Subchannel::OnConnectingFinished(void* arg, grpc_error_handle error) {
 
 void Subchannel::OnConnectingFinishedLocked(grpc_error_handle error) {
   if (shutdown_) {
+    if (connecting_result_.transport != nullptr) {
+      grpc_transport_destroy(connecting_result_.transport);
+    }
     return;
   }
   // If we didn't get a transport or we fail to publish it, report
