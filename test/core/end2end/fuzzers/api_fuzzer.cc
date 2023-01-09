@@ -64,7 +64,6 @@
 #include "src/core/lib/iomgr/resolve_address.h"
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/iomgr/tcp_client.h"
-#include "src/core/lib/iomgr/timer.h"
 #include "src/core/lib/iomgr/timer_manager.h"
 #include "src/core/lib/resolver/server_address.h"
 #include "src/core/lib/slice/slice_internal.h"
