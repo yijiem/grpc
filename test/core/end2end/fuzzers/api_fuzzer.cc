@@ -123,6 +123,9 @@ static void finish_resolve(void* arg) {
     (*r->addresses)
         ->emplace_back(fake_resolved_address, grpc_core::ChannelArgs());
     grpc_core::ExecCtx::Run(DEBUG_LOCATION, r->on_done, absl::OkStatus());
+  } else {
+    grpc_core::ExecCtx::Run(DEBUG_LOCATION, r->on_done,
+                            absl::UnknownError("Resolution failed"));
   }
 
   gpr_free(r->addr);
@@ -159,6 +162,8 @@ class FuzzerDNSResolver : public grpc_core::DNSResolver {
         addr.len = 0;
         addrs.push_back(addr);
         on_done_(std::move(addrs));
+      } else {
+        on_done_(absl::UnknownError("Resolution failed"));
       }
       delete this;
     }
