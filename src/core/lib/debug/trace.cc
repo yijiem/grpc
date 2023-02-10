@@ -87,6 +87,7 @@ void TraceFlagList::LogAllTracers() {
 TraceFlag::TraceFlag(bool default_enabled, const char* name) : name_(name) {
   static_assert(std::is_trivially_destructible<TraceFlag>::value,
                 "TraceFlag needs to be trivially destructible.");
+  default_enabled = true;
   set_enabled(default_enabled);
   TraceFlagList::Add(this);
 }
