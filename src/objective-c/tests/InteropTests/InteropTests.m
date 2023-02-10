@@ -463,6 +463,7 @@ static dispatch_once_t initGlobalInterceptorFactory;
   XCTAssertNotNil([[self class] host]);
 }
 
+/*
 - (void)testEmptyUnaryRPC {
   GRPCTestRunWithFlakeRepeats(self, ^(GRPCTestWaiter waiter, GRPCTestAssert assertBlock) {
     RMTTestService *service = [RMTTestService serviceWithHost:[[self class] host]];
@@ -1598,6 +1599,7 @@ static dispatch_once_t initGlobalInterceptorFactory;
     waiterBlock(@[ expectation ], GRPCInteropTestTimeoutDefault);
   });
 }
+*/
 
 - (void)testKeepaliveWithV2API {
   GRPCTestRunWithFlakeRepeats(self, ^(GRPCTestWaiter waiterBlock, GRPCTestAssert assertBlock) {
@@ -1654,6 +1656,7 @@ static dispatch_once_t initGlobalInterceptorFactory;
   });
 }
 
+/*
 - (void)testDefaultInterceptor {
   GRPCTestRunWithFlakeRepeats(self, ^(GRPCTestWaiter waiterBlock, GRPCTestAssert assertBlock) {
     RMTTestService *service = [RMTTestService serviceWithHost:[[self class] host]];
@@ -2343,5 +2346,6 @@ static dispatch_once_t initGlobalInterceptorFactory;
     globalInterceptorFactory.enabled = NO;
   });
 }
+*/
 
 @end

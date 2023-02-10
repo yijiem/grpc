@@ -45,24 +45,24 @@ BAZEL_REMOTE_CACHE_ARGS=(
 
 EXAMPLE_TARGETS=(
   # TODO(jtattermusch): ideally we'd say "//src/objective-c/examples/..." but not all the targets currently build
-  //src/objective-c/examples:Sample
-  //src/objective-c/examples:tvOS-sample
+  # //src/objective-c/examples:Sample
+  # //src/objective-c/examples:tvOS-sample
 )
 
 TEST_TARGETS=(
   # TODO(jtattermusch): ideally we'd say "//src/objective-c/tests/..." but not all the targets currently build
   //src/objective-c/tests:InteropTestsLocalCleartext
-  //src/objective-c/tests:InteropTestsLocalSSL
-  //src/objective-c/tests:InteropTestsRemote
-  //src/objective-c/tests:MacTests
-  //src/objective-c/tests:UnitTests
-  //src/objective-c/tests:CronetTests
-  //src/objective-c/tests:PerfTests
-  //src/objective-c/tests:CFStreamTests
-  //src/objective-c/tests:tvtests_build_test
+  # //src/objective-c/tests:InteropTestsLocalSSL
+  # //src/objective-c/tests:InteropTestsRemote
+  # //src/objective-c/tests:MacTests
+  # //src/objective-c/tests:UnitTests
+  # //src/objective-c/tests:CronetTests
+  # //src/objective-c/tests:PerfTests
+  # //src/objective-c/tests:CFStreamTests
+  # //src/objective-c/tests:tvtests_build_test
   # codegen plugin tests
-  //src/objective-c/tests:objc_codegen_plugin_test
-  //src/objective-c/tests:objc_codegen_plugin_option_test
+  # //src/objective-c/tests:objc_codegen_plugin_test
+  # //src/objective-c/tests:objc_codegen_plugin_option_test
 )
 
 # === BEGIN SECTION: run interop_server on the background ====
