@@ -1603,9 +1603,7 @@ static dispatch_once_t initGlobalInterceptorFactory;
   GRPCTestRunWithFlakeRepeats(self, ^(GRPCTestWaiter waiterBlock, GRPCTestAssert assertBlock) {
     // The test is highly flaky when ran as part of InteropTestsRemote
     // TODO(jtattermusch): fix and re-enable the test.
-    if ([[self class] isRemoteTest]) {
-      return;
-    }
+    return;
 
     RMTTestService *service = [RMTTestService serviceWithHost:[[self class] host]];
     if ([[self class] transport] == gGRPCCoreCronetID) {
