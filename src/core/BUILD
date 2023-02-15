@@ -401,6 +401,32 @@ grpc_cc_library(
 )
 
 grpc_cc_library(
+    name = "1999",
+    srcs = [
+        "lib/promise/party.cc",
+    ],
+    hdrs = [
+        "lib/promise/party.h",
+    ],
+    external_deps = [
+        "absl/base:core_headers",
+        "absl/container:inlined_vector",
+        "absl/strings",
+        "absl/strings:str_format",
+        "absl/types:variant",
+    ],
+    language = "c++",
+    deps = [
+        "activity",
+        "arena",
+        "poll",
+        "promise_trace",
+        "//:gpr",
+        "//:grpc_trace",
+    ],
+)
+
+grpc_cc_library(
     name = "context",
     language = "c++",
     public_hdrs = [
@@ -683,7 +709,6 @@ grpc_cc_library(
         "absl/strings:str_format",
         "absl/types:optional",
         "absl/types:variant",
-        "absl/utility",
     ],
     language = "c++",
     public_hdrs = [
@@ -829,7 +854,6 @@ grpc_cc_library(
     ],
     external_deps = [
         "absl/base:core_headers",
-        "absl/memory",
         "absl/strings",
         "absl/types:optional",
         "absl/types:variant",
@@ -1212,7 +1236,6 @@ grpc_cc_library(
         "lib/slice/slice_buffer.h",
         "//:include/grpc/slice_buffer.h",
     ],
-    external_deps = ["absl/memory"],
     deps = [
         "slice",
         "slice_refcount",
@@ -2470,7 +2493,6 @@ grpc_cc_library(
     srcs = ["lib/load_balancing/lb_policy.cc"],
     hdrs = ["lib/load_balancing/lb_policy.h"],
     external_deps = [
-        "absl/base:core_headers",
         "absl/status",
         "absl/status:statusor",
         "absl/strings",
@@ -2490,7 +2512,6 @@ grpc_cc_library(
         "//:debug_location",
         "//:event_engine_base_hdrs",
         "//:exec_ctx",
-        "//:gpr",
         "//:gpr_platform",
         "//:grpc_trace",
         "//:orphanable",
@@ -3814,7 +3835,6 @@ grpc_cc_library(
         "absl/base:core_headers",
         "absl/functional:bind_front",
         "absl/memory",
-        "absl/random",
         "absl/status",
         "absl/status:statusor",
         "absl/strings",
@@ -4412,7 +4432,6 @@ grpc_cc_library(
         "ext/filters/client_channel/lb_policy/round_robin/round_robin.cc",
     ],
     external_deps = [
-        "absl/random",
         "absl/status",
         "absl/status:statusor",
         "absl/strings",
@@ -4599,7 +4618,6 @@ grpc_cc_library(
         "ext/filters/client_channel/lb_policy/weighted_target/weighted_target.cc",
     ],
     external_deps = [
-        "absl/base:core_headers",
         "absl/random",
         "absl/status",
         "absl/status:statusor",
