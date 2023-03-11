@@ -66,7 +66,7 @@ auto WrapInPoll(T&& x) -> decltype(PollWrapper<T>::Wrap(std::forward<T>(x))) {
 template <typename F>
 class PromiseLike {
  private:
-  GPR_NO_UNIQUE_ADDRESS F f_;
+  F f_;
 
  public:
   // NOLINTNEXTLINE - internal detail that drastically simplifies calling code.
