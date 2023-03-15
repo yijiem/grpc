@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_H
-#define GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_H
+#ifndef GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_DRIVER_H
+#define GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_DRIVER_H
 
 #include <grpc/support/port_platform.h>
 
@@ -37,7 +37,7 @@
 #include "absl/synchronization/mutex.h"
 #include "absl/types/optional.h"
 
-#include "include/grpc/event_engine/event_engine.h"
+#include <grpc/event_engine/event_engine.h>
 #include <grpc/support/log.h>
 
 #include "src/core/lib/gprpp/orphanable.h"
@@ -69,7 +69,7 @@ class FdNodeList {
    public:
     FdNode() = default;
     explicit FdNode(ares_socket_t as, PollerHandle handle)
-        : as_(as), handle_(std::move(handle)) {}
+        : as_(as), handle_(handle) {}
 
     bool readable_registered() const { return readable_registered_; }
     bool writable_registered() const { return writable_registered_; }
@@ -310,4 +310,4 @@ class GrpcAresTXTRequest : public GrpcAresRequest {
 }  // namespace experimental
 }  // namespace grpc_event_engine
 
-#endif  // GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_H
+#endif  // GRPC_SRC_CORE_LIB_EVENT_ENGINE_ARES_DRIVER_H

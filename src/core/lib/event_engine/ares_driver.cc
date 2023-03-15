@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/event_engine/ares_driver.h"
 
 #include <arpa/nameser.h>
@@ -26,13 +28,13 @@
 #include "absl/strings/str_format.h"
 #include "absl/types/optional.h"
 #include "ares.h"
-#include "ares_driver.h"
 
 #include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/debug/trace.h"
+#include "src/core/lib/event_engine/ares_driver.h"
 #include "src/core/lib/event_engine/nameser.h"  // IWYU pragma: keep
 #include "src/core/lib/event_engine/posix_engine/posix_engine_closure.h"
 #include "src/core/lib/gprpp/debug_location.h"
@@ -41,6 +43,8 @@
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/error.h"
+#include "src/core/lib/iomgr/resolved_address.h"
+#include "src/core/lib/iomgr/sockaddr.h"
 // #include "src/core/lib/iomgr/resolved_address.h"
 // #include "src/core/lib/iomgr/sockaddr.h"
 
@@ -355,7 +359,7 @@ void GrpcAresRequest::Work() {
       FdNodeList::FdNode* fd_node = fd_node_list_->PopFdNode(socks[i]);
       if (fd_node == nullptr) {
         fd_node = new FdNodeList::FdNode(
-            socks[i], std::move(register_socket_with_poller_cb_(socks[i])));
+            socks[i], register_socket_with_poller_cb_(socks[i]));
         GRPC_CARES_TRACE_LOG("request:%p new fd: %d", this,
                              fd_node->WrappedFd());
       }

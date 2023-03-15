@@ -57,8 +57,8 @@ grpc_cc_library(
     data = [
         "dns_test_record_groups.yaml",
         "python_wrapper.sh",
-        "//test/cpp/naming/utils:dns_server",
         "//test/cpp/naming/utils:dns_resolver",
+        "//test/cpp/naming/utils:dns_server",
         "//test/cpp/naming/utils:tcp_connect",
     ],
     deps = [
