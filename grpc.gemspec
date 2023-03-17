@@ -1039,6 +1039,8 @@ Gem::Specification.new do |s|
   s.files += %w( src/core/lib/debug/stats_data.h )
   s.files += %w( src/core/lib/debug/trace.cc )
   s.files += %w( src/core/lib/debug/trace.h )
+  s.files += %w( src/core/lib/event_engine/ares_driver.cc )
+  s.files += %w( src/core/lib/event_engine/ares_driver.h )
   s.files += %w( src/core/lib/event_engine/channel_args_endpoint_config.cc )
   s.files += %w( src/core/lib/event_engine/channel_args_endpoint_config.h )
   s.files += %w( src/core/lib/event_engine/common_closures.h )

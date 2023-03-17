@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <grpc/support/port_platform.h>
+
 #include "src/core/lib/event_engine/ares_driver.h"
 
 #include <arpa/nameser.h>
@@ -21,18 +23,19 @@
 #include <algorithm>
 #include <initializer_list>
 #include <type_traits>
+#include <utility>
 
 #include "absl/strings/str_cat.h"
 #include "absl/strings/str_format.h"
 #include "absl/types/optional.h"
 #include "ares.h"
-#include "ares_driver.h"
 
 #include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/debug/trace.h"
+#include "src/core/lib/event_engine/ares_driver.h"
 #include "src/core/lib/event_engine/nameser.h"  // IWYU pragma: keep
 #include "src/core/lib/event_engine/posix_engine/posix_engine_closure.h"
 #include "src/core/lib/gprpp/debug_location.h"
@@ -41,6 +44,8 @@
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
 #include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/error.h"
+#include "src/core/lib/iomgr/resolved_address.h"
+#include "src/core/lib/iomgr/sockaddr.h"
 // #include "src/core/lib/iomgr/resolved_address.h"
 // #include "src/core/lib/iomgr/sockaddr.h"
 
