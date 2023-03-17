@@ -20,10 +20,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <algorithm>
 #include <memory>
 #include <sstream>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include <ares.h>
@@ -36,7 +36,7 @@
 #include "absl/synchronization/mutex.h"
 #include "absl/types/optional.h"
 
-#include "include/grpc/event_engine/event_engine.h"
+#include <grpc/event_engine/event_engine.h>
 #include <grpc/support/log.h>
 
 #include "src/core/lib/gprpp/orphanable.h"
@@ -68,7 +68,7 @@ class FdNodeList {
    public:
     FdNode() = default;
     explicit FdNode(ares_socket_t as, PollerHandle handle)
-        : as_(as), handle_(std::move(handle)) {}
+        : as_(as), handle_(handle) {}
 
     bool readable_registered() const { return readable_registered_; }
     bool writable_registered() const { return writable_registered_; }
