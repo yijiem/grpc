@@ -27,7 +27,6 @@
 #include <utility>
 #include <vector>
 
-#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include "absl/status/statusor.h"
@@ -36,6 +35,8 @@
 #include "absl/strings/string_view.h"
 #include "absl/time/clock.h"
 #include "absl/time/time.h"
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 
 #include <grpc/event_engine/event_engine.h>
 #include <grpc/support/alloc.h>
@@ -43,7 +44,6 @@
 #include <grpc/support/string_util.h>
 
 #include "src/core/lib/gprpp/notification.h"
-#include "src/core/lib/iomgr/exec_ctx.h"
 #include "src/core/lib/iomgr/sockaddr.h"
 #include "test/core/event_engine/event_engine_test_utils.h"
 #include "test/core/event_engine/test_suite/event_engine_test_framework.h"

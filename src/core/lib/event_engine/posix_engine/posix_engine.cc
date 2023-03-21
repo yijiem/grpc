@@ -31,8 +31,6 @@
 #include "absl/meta/type_traits.h"
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
-#include "posix_engine.h"
-#include "posix_engine_closure.h"
 
 #include <grpc/event_engine/event_engine.h>
 #include <grpc/event_engine/memory_allocator.h>
@@ -44,6 +42,8 @@
 #include "src/core/lib/event_engine/ares_driver.h"
 #include "src/core/lib/event_engine/poller.h"
 #include "src/core/lib/event_engine/posix.h"
+#include "src/core/lib/event_engine/posix_engine/posix_engine.h"
+#include "src/core/lib/event_engine/posix_engine/posix_engine_closure.h"
 #include "src/core/lib/event_engine/posix_engine/tcp_socket_utils.h"
 #include "src/core/lib/event_engine/posix_engine/timer.h"
 #include "src/core/lib/event_engine/shim.h"
@@ -71,9 +71,7 @@ using namespace std::chrono_literals;
 namespace grpc_event_engine {
 namespace experimental {
 
-bool NeedPosixEngine() {
-  return true || UseEventEngineClient() || UseEventEngineListener();
-}
+bool NeedPosixEngine() { return true || UseEventEngineListener(); }
 
 #ifdef GRPC_POSIX_SOCKET_TCP
 
