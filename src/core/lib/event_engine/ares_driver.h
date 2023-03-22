@@ -36,7 +36,7 @@
 #include "absl/synchronization/mutex.h"
 #include "absl/types/optional.h"
 
-#include "include/grpc/event_engine/event_engine.h"
+#include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/gprpp/orphanable.h"
 

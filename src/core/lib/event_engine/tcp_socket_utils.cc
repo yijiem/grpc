@@ -13,7 +13,7 @@
 // limitations under the License.
 #include <grpc/support/port_platform.h>
 
-#include "tcp_socket_utils.h"
+#include "src/core/lib/event_engine/tcp_socket_utils.h"
 
 #include <grpc/event_engine/event_engine.h>
 
