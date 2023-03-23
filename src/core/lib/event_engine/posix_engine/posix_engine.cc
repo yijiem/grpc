@@ -69,9 +69,7 @@ using namespace std::chrono_literals;
 namespace grpc_event_engine {
 namespace experimental {
 
-bool NeedPosixEngine() {
-  return true || UseEventEngineClient() || UseEventEngineListener();
-}
+bool NeedPosixEngine() { return true || UseEventEngineListener(); }
 
 #ifdef GRPC_POSIX_SOCKET_TCP
 
