@@ -16,13 +16,11 @@
 
 #include <grpc/support/port_platform.h>
 
-#include <arpa/inet.h>
 #include <stddef.h>
 #include <stdint.h>
 
 #include <algorithm>
 #include <memory>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -36,7 +34,7 @@
 #include "absl/synchronization/mutex.h"
 #include "absl/types/optional.h"
 
-#include "include/grpc/event_engine/event_engine.h"
+#include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/gprpp/ref_counted.h"
 
