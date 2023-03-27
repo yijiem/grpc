@@ -50,6 +50,23 @@ cc_grpc_library(
     deps = [":helloworld_cc_proto"],
 )
 
+proto_library(
+    name = "helloworld500_proto",
+    srcs = ["helloworld500.proto"],
+)
+
+cc_proto_library(
+    name = "helloworld500_cc_proto",
+    deps = [":helloworld500_proto"],
+)
+
+cc_grpc_library(
+    name = "helloworld500_cc_grpc",
+    srcs = [":helloworld500_proto"],
+    grpc_only = True,
+    deps = [":helloworld500_cc_proto"],
+)
+
 grpc_proto_library(
     name = "route_guide",
     srcs = ["route_guide.proto"],
