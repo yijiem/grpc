@@ -25,6 +25,8 @@
 #include <type_traits>
 #include <utility>
 
+#include <ares.h>
+
 #include "absl/cleanup/cleanup.h"
 #include "absl/functional/any_invocable.h"
 #include "absl/meta/type_traits.h"
@@ -72,7 +74,7 @@ using LookupTaskHandle = PosixEventEngine::PosixDNSResolver::LookupTaskHandle;
 
 bool NeedPosixEngine() {
   // DO NOT SUBMIT: remove the short-circuit
-  return true || UseEventEngineClient() || UseEventEngineListener();
+  return true || UseEventEngineListener();
 }
 
 #ifdef GRPC_POSIX_SOCKET_TCP
