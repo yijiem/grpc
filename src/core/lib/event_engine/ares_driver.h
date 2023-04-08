@@ -18,6 +18,7 @@
 
 #include <stddef.h>  // for size_t
 
+#include <algorithm>
 #include <memory>
 #include <string>
 #include <vector>

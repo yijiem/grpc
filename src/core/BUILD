@@ -1927,6 +1927,7 @@ grpc_cc_library(
         "absl/status",
         "absl/status:statusor",
         "absl/strings",
+        "cares",
     ],
     deps = [
         "ares_driver",
