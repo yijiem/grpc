@@ -29,6 +29,7 @@
 
 #include "absl/base/thread_annotations.h"
 
+#include <grpc/event_engine/event_engine.h>
 #include <grpc/support/log.h>
 
 #include "src/core/lib/debug/trace.h"
@@ -37,6 +38,16 @@
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/iomgr/iomgr_fwd.h"
 #include "src/core/lib/resolver/server_address.h"
+
+using EventEngine = ::grpc_event_engine::experimental::EventEngine;
+
+namespace grpc_event_engine {
+namespace experimental {
+class GrpcPolledFdFactory;
+}  // namespace experimental
+}  // namespace grpc_event_engine
+using GrpcPolledFdFactory =
+    ::grpc_event_engine::experimental::GrpcPolledFdFactory;
 
 #define GRPC_DNS_ARES_DEFAULT_QUERY_TIMEOUT_MS 120000
 
@@ -53,6 +64,12 @@ extern grpc_core::TraceFlag grpc_trace_cares_resolver;
 
 typedef struct grpc_ares_ev_driver grpc_ares_ev_driver;
 
+enum class RequestType {
+  kHostnameRequest,
+  kSRVRequest,
+  kTXTRequest,
+};
+
 struct grpc_ares_request {
   /// synchronizes access to this request, and also to associated
   /// ev_driver and fd_node objects
@@ -61,21 +78,30 @@ struct grpc_ares_request {
   struct ares_addr_port_node dns_server_addr ABSL_GUARDED_BY(mu);
   /// following members are set in grpc_resolve_address_ares_impl
   /// closure to call when the request completes
-  grpc_closure* on_done ABSL_GUARDED_BY(mu) = nullptr;
+  // grpc_closure* on_done ABSL_GUARDED_BY(mu) = nullptr;
   /// the pointer to receive the resolved addresses
-  std::unique_ptr<grpc_core::ServerAddressList>* addresses_out
-      ABSL_GUARDED_BY(mu);
+  std::vector<EventEngine::ResolvedAddress> addresses_out ABSL_GUARDED_BY(mu);
   /// the pointer to receive the resolved balancer addresses
-  std::unique_ptr<grpc_core::ServerAddressList>* balancer_addresses_out
+  // std::unique_ptr<grpc_core::ServerAddressList> balancer_addresses_out
+  //     ABSL_GUARDED_BY(mu);
+  std::vector<EventEngine::DNSResolver::SRVRecord> srv_records_out
       ABSL_GUARDED_BY(mu);
   /// the pointer to receive the service config in JSON
-  char** service_config_json_out ABSL_GUARDED_BY(mu) = nullptr;
+  // char** service_config_json_out ABSL_GUARDED_BY(mu) = nullptr;
+  std::string service_config_json_out ABSL_GUARDED_BY(mu);
   /// the event driver used by this request
   grpc_ares_ev_driver* ev_driver ABSL_GUARDED_BY(mu) = nullptr;
   /// number of ongoing queries
   size_t pending_queries ABSL_GUARDED_BY(mu) = 0;
   /// the errors explaining query failures, appended to in query callbacks
   grpc_error_handle error ABSL_GUARDED_BY(mu);
+
+  RequestType type;
+  absl::variant<EventEngine::DNSResolver::LookupHostnameCallback,
+                EventEngine::DNSResolver::LookupSRVCallback,
+                EventEngine::DNSResolver::LookupTXTCallback>
+      on_resolve ABSL_GUARDED_BY(mu);
+  EventEngine* event_engine ABSL_GUARDED_BY(mu);
 };
 
 // Asynchronously resolve \a name (A/AAAA records only).
@@ -91,24 +117,25 @@ struct grpc_ares_request {
 // the grpc_ares_request* and another to start the async work.
 extern grpc_ares_request* (*grpc_dns_lookup_hostname_ares)(
     const char* dns_server, const char* name, const char* default_port,
-    grpc_pollset_set* interested_parties, grpc_closure* on_done,
-    std::unique_ptr<grpc_core::ServerAddressList>* addresses,
-    int query_timeout_ms);
+    std::unique_ptr<GrpcPolledFdFactory> polled_fd_factory,
+    EventEngine::DNSResolver::LookupHostnameCallback on_resolve,
+    int query_timeout_ms, EventEngine* event_engine);
 
 // Asynchronously resolve a SRV record.
 // See \a grpc_dns_lookup_hostname_ares for usage details and caveats.
 extern grpc_ares_request* (*grpc_dns_lookup_srv_ares)(
     const char* dns_server, const char* name,
-    grpc_pollset_set* interested_parties, grpc_closure* on_done,
-    std::unique_ptr<grpc_core::ServerAddressList>* balancer_addresses,
-    int query_timeout_ms);
+    std::unique_ptr<GrpcPolledFdFactory> polled_fd_factory,
+    EventEngine::DNSResolver::LookupSRVCallback on_resolve,
+    int query_timeout_ms, EventEngine* event_engine);
 
 // Asynchronously resolve a TXT record.
 // See \a grpc_dns_lookup_hostname_ares for usage details and caveats.
 extern grpc_ares_request* (*grpc_dns_lookup_txt_ares)(
     const char* dns_server, const char* name,
-    grpc_pollset_set* interested_parties, grpc_closure* on_done,
-    char** service_config_json, int query_timeout_ms);
+    std::unique_ptr<GrpcPolledFdFactory> polled_fd_factory,
+    EventEngine::DNSResolver::LookupTXTCallback on_resolve,
+    int query_timeout_ms, EventEngine* event_engine);
 
 // Cancel the pending grpc_ares_request \a request
 extern void (*grpc_cancel_ares_request)(grpc_ares_request* request);

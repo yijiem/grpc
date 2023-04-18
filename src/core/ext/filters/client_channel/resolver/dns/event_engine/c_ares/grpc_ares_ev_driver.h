@@ -27,13 +27,14 @@
 
 #include "absl/base/thread_annotations.h"
 
-#include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.h"
+#include "src/core/ext/filters/client_channel/resolver/dns/event_engine/c_ares/grpc_ares_wrapper.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/iomgr/closure.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/iomgr/iomgr_fwd.h"
 
-namespace grpc_core {
+namespace grpc_event_engine {
+namespace experimental {
 
 // A wrapped fd that integrates with the grpc iomgr of the current platform.
 // A GrpcPolledFd knows how to create grpc platform-specific iomgr endpoints
@@ -43,10 +44,12 @@ class GrpcPolledFd {
  public:
   virtual ~GrpcPolledFd() {}
   // Called when c-ares library is interested and there's no pending callback
-  virtual void RegisterForOnReadableLocked(grpc_closure* read_closure)
+  virtual void RegisterForOnReadableLocked(
+      absl::AnyInvocable<void(absl::Status)> read_closure)
       ABSL_EXCLUSIVE_LOCKS_REQUIRED(&grpc_ares_request::mu) = 0;
   // Called when c-ares library is interested and there's no pending callback
-  virtual void RegisterForOnWriteableLocked(grpc_closure* write_closure)
+  virtual void RegisterForOnWriteableLocked(
+      absl::AnyInvocable<void(absl::Status)> write_closure)
       ABSL_EXCLUSIVE_LOCKS_REQUIRED(&grpc_ares_request::mu) = 0;
   // Indicates if there is data left even after just being read from
   virtual bool IsFdStillReadableLocked()
@@ -70,8 +73,7 @@ class GrpcPolledFdFactory {
  public:
   virtual ~GrpcPolledFdFactory() {}
   // Creates a new wrapped fd for the current platform
-  virtual GrpcPolledFd* NewGrpcPolledFdLocked(
-      ares_socket_t as, grpc_pollset_set* driver_pollset_set)
+  virtual GrpcPolledFd* NewGrpcPolledFdLocked(ares_socket_t as)
       ABSL_EXCLUSIVE_LOCKS_REQUIRED(&grpc_ares_request::mu) = 0;
   // Optionally configures the ares channel after creation
   virtual void ConfigureAresChannelLocked(ares_channel channel)
@@ -83,8 +85,10 @@ class GrpcPolledFdFactory {
 // parameter is guaranteed to be alive for the the whole lifetime of
 // the resulting GrpcPolledFdFactory as well as any GrpcPolledFd
 // returned by the factory.
-std::unique_ptr<GrpcPolledFdFactory> NewGrpcPolledFdFactory(Mutex* mu);
+// std::unique_ptr<GrpcPolledFdFactory> NewGrpcPolledFdFactory(
+//     grpc_core::Mutex* mu);
 
-}  // namespace grpc_core
+}  // namespace experimental
+}  // namespace grpc_event_engine
 
 #endif  // GRPC_SRC_CORE_EXT_FILTERS_CLIENT_CHANNEL_RESOLVER_DNS_C_ARES_GRPC_ARES_EV_DRIVER_H

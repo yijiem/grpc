@@ -21,9 +21,12 @@
 #include "src/core/lib/iomgr/port.h"
 #if GRPC_ARES == 1 && defined(GRPC_POSIX_SOCKET_ARES_EV_DRIVER)
 
-#include "src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.h"
-#include "src/core/lib/iomgr/socket_utils_posix.h"
+#include "src/core/ext/filters/client_channel/resolver/dns/event_engine/c_ares/grpc_ares_wrapper.h"
+#include "src/core/lib/event_engine/posix_engine/tcp_socket_utils.h"
 
-bool grpc_ares_query_ipv6() { return grpc_ipv6_loopback_available(); }
+bool grpc_ares_query_ipv6() {
+  return grpc_event_engine::experimental::PosixSocketWrapper::
+      IsIpv6LoopbackAvailable();
+}
 
 #endif  // GRPC_ARES == 1 && defined(GRPC_POSIX_SOCKET_ARES_EV_DRIVER)
