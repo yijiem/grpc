@@ -77,6 +77,9 @@
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/iomgr/timer.h"
 
+namespace grpc_event_engine {
+namespace experimental {
+
 using grpc_core::ServerAddress;
 using grpc_core::ServerAddressList;
 
@@ -447,7 +450,11 @@ static void grpc_ares_notify_on_event_locked(grpc_ares_ev_driver* ev_driver)
           // GRPC_CLOSURE_INIT(&fdn->read_closure, on_readable, fdn,
           //                   grpc_schedule_on_exec_ctx);
           fdn->grpc_polled_fd->RegisterForOnReadableLocked(
-              [fdn](absl::Status status) { on_readable(fdn, status); });
+              [fdn](absl::Status status) {
+                grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+                grpc_core::ExecCtx exec_ctx;
+                on_readable(fdn, status);
+              });
           fdn->readable_registered = true;
         }
         // Register write_closure if the socket is writable and write_closure
@@ -461,7 +468,11 @@ static void grpc_ares_notify_on_event_locked(grpc_ares_ev_driver* ev_driver)
           // GRPC_CLOSURE_INIT(&fdn->write_closure, on_writable, fdn,
           //                   grpc_schedule_on_exec_ctx);
           fdn->grpc_polled_fd->RegisterForOnWriteableLocked(
-              [fdn](absl::Status status) { on_writable(fdn, status); });
+              [fdn](absl::Status status) {
+                grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+                grpc_core::ExecCtx exec_ctx;
+                on_writable(fdn, status);
+              });
           fdn->writable_registered = true;
         }
       }
@@ -608,6 +619,7 @@ void grpc_ares_complete_request_locked(grpc_ares_request* r)
     ABSL_EXCLUSIVE_LOCKS_REQUIRED(r->mu) {
   // Invoke on_done callback and destroy the request
   r->ev_driver = nullptr;
+  if (r->cancelled) return;
   if (!r->addresses_out.empty()) {
     grpc_cares_wrapper_address_sorting_sort(r, &r->addresses_out);
     r->error = absl::OkStatus();
@@ -625,6 +637,8 @@ void grpc_ares_complete_request_locked(grpc_ares_request* r)
       r->event_engine->Run([on_resolve = std::move(r->on_resolve),
                             error = std::move(r->error),
                             result = std::move(r->addresses_out)]() mutable {
+        grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+        grpc_core::ExecCtx exec_ctx;
         if (error.ok()) {
           absl::get<EventEngine::DNSResolver::LookupHostnameCallback>(
               on_resolve)(std::move(result));
@@ -638,6 +652,8 @@ void grpc_ares_complete_request_locked(grpc_ares_request* r)
       r->event_engine->Run([on_resolve = std::move(r->on_resolve),
                             error = std::move(r->error),
                             result = std::move(r->srv_records_out)]() mutable {
+        grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+        grpc_core::ExecCtx exec_ctx;
         if (error.ok()) {
           absl::get<EventEngine::DNSResolver::LookupSRVCallback>(on_resolve)(
               std::move(result));
@@ -651,6 +667,8 @@ void grpc_ares_complete_request_locked(grpc_ares_request* r)
       r->event_engine->Run(
           [on_resolve = std::move(r->on_resolve), error = std::move(r->error),
            result = std::move(r->service_config_json_out)]() mutable {
+            grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+            grpc_core::ExecCtx exec_ctx;
             if (error.ok()) {
               absl::get<EventEngine::DNSResolver::LookupTXTCallback>(
                   on_resolve)(std::move(result));
@@ -1083,6 +1101,8 @@ static grpc_ares_request* grpc_dns_lookup_hostname_ares_impl(
   if (!error.ok()) {
     event_engine->Run([error = std::move(error),
                        on_resolve = std::move(r->on_resolve)]() mutable {
+      grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+      grpc_core::ExecCtx exec_ctx;
       absl::get<EventEngine::DNSResolver::LookupHostnameCallback>(on_resolve)(
           std::move(error));
     });
@@ -1123,10 +1143,12 @@ grpc_ares_request* grpc_dns_lookup_srv_ares_impl(
   grpc_error_handle error;
   // Don't query for SRV records if the target is "localhost"
   if (target_matches_localhost(name)) {
-    event_engine->Run([on_resolve = std::move(r->on_resolve),
-                       error = std::move(error)]() mutable {
+    event_engine->Run([on_resolve = std::move(r->on_resolve)]() mutable {
+      grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+      grpc_core::ExecCtx exec_ctx;
       absl::get<EventEngine::DNSResolver::LookupSRVCallback>(on_resolve)(
-          std::move(error));
+          GRPC_ERROR_CREATE(
+              "Skip querying for SRV records for localhost target"));
     });
     return r;
   }
@@ -1139,6 +1161,8 @@ grpc_ares_request* grpc_dns_lookup_srv_ares_impl(
   if (!error.ok()) {
     event_engine->Run([on_resolve = std::move(r->on_resolve),
                        error = std::move(error)]() mutable {
+      grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+      grpc_core::ExecCtx exec_ctx;
       absl::get<EventEngine::DNSResolver::LookupSRVCallback>(on_resolve)(
           std::move(error));
     });
@@ -1173,6 +1197,8 @@ grpc_ares_request* grpc_dns_lookup_txt_ares_impl(
   if (target_matches_localhost(name)) {
     event_engine->Run([on_resolve = std::move(r->on_resolve),
                        error = std::move(error)]() mutable {
+      grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+      grpc_core::ExecCtx exec_ctx;
       absl::get<EventEngine::DNSResolver::LookupTXTCallback>(on_resolve)(
           std::move(error));
     });
@@ -1187,6 +1213,8 @@ grpc_ares_request* grpc_dns_lookup_txt_ares_impl(
   if (!error.ok()) {
     event_engine->Run([on_resolve = std::move(r->on_resolve),
                        error = std::move(error)]() mutable {
+      grpc_core::ApplicationCallbackExecCtx callback_exec_ctx;
+      grpc_core::ExecCtx exec_ctx;
       absl::get<EventEngine::DNSResolver::LookupTXTCallback>(on_resolve)(
           std::move(error));
     });
@@ -1227,6 +1255,7 @@ grpc_ares_request* (*grpc_dns_lookup_txt_ares)(
 static void grpc_cancel_ares_request_impl(grpc_ares_request* r) {
   GPR_ASSERT(r != nullptr);
   grpc_core::MutexLock lock(&r->mu);
+  r->cancelled = true;
   GRPC_CARES_TRACE_LOG("request:%p grpc_cancel_ares_request ev_driver:%p", r,
                        r->ev_driver);
   if (r->ev_driver != nullptr) {
@@ -1255,5 +1284,8 @@ void grpc_ares_cleanup(void) { ares_library_cleanup(); }
 grpc_error_handle grpc_ares_init(void) { return absl::OkStatus(); }
 void grpc_ares_cleanup(void) {}
 #endif  // GPR_WINDOWS
+
+}  // namespace experimental
+}  // namespace grpc_event_engine
 
 #endif  // GRPC_ARES == 1

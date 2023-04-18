@@ -39,15 +39,10 @@
 #include "src/core/lib/iomgr/iomgr_fwd.h"
 #include "src/core/lib/resolver/server_address.h"
 
-using EventEngine = ::grpc_event_engine::experimental::EventEngine;
-
 namespace grpc_event_engine {
 namespace experimental {
+
 class GrpcPolledFdFactory;
-}  // namespace experimental
-}  // namespace grpc_event_engine
-using GrpcPolledFdFactory =
-    ::grpc_event_engine::experimental::GrpcPolledFdFactory;
 
 #define GRPC_DNS_ARES_DEFAULT_QUERY_TIMEOUT_MS 120000
 
@@ -95,6 +90,8 @@ struct grpc_ares_request {
   size_t pending_queries ABSL_GUARDED_BY(mu) = 0;
   /// the errors explaining query failures, appended to in query callbacks
   grpc_error_handle error ABSL_GUARDED_BY(mu);
+
+  bool cancelled ABSL_GUARDED_BY(mu) = false;
 
   RequestType type;
   absl::variant<EventEngine::DNSResolver::LookupHostnameCallback,
@@ -159,5 +156,8 @@ void grpc_cares_wrapper_address_sorting_sort(
 
 // Exposed in this header for C-core tests only
 extern void (*grpc_ares_test_only_inject_config)(ares_channel channel);
+
+}  // namespace experimental
+}  // namespace grpc_event_engine
 
 #endif  // GRPC_SRC_CORE_EXT_FILTERS_CLIENT_CHANNEL_RESOLVER_DNS_C_ARES_GRPC_ARES_WRAPPER_H

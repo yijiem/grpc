@@ -24,9 +24,15 @@
 #include "src/core/ext/filters/client_channel/resolver/dns/event_engine/c_ares/grpc_ares_wrapper.h"
 #include "src/core/lib/event_engine/posix_engine/tcp_socket_utils.h"
 
+namespace grpc_event_engine {
+namespace experimental {
+
 bool grpc_ares_query_ipv6() {
   return grpc_event_engine::experimental::PosixSocketWrapper::
       IsIpv6LoopbackAvailable();
 }
+
+}  // namespace experimental
+}  // namespace grpc_event_engine
 
 #endif  // GRPC_ARES == 1 && defined(GRPC_POSIX_SOCKET_ARES_EV_DRIVER)

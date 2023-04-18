@@ -495,17 +495,18 @@ LookupTaskHandle PosixEventEngine::PosixDNSResolver::LookupHostname(
     absl::string_view default_port, Duration timeout) {
   grpc_core::MutexLock lock(&mu_);
   // nasty workaround
-  LookupTaskHandle* handle_ptr = nullptr;
+  auto handle_ptr =
+      std::make_shared<LookupTaskHandle>(LookupTaskHandle::kInvalid);
   grpc_ares_request* request = grpc_dns_lookup_hostname_ares(
       options_.dns_server.c_str(), std::string(name).c_str(),
       std::string(default_port).c_str(),
       std::make_unique<GrpcPolledFdFactoryPosix>(
           [this](int fd) { return CreateEventHandle(fd); }),
-      [on_resolve = std::move(on_resolve),
-       handle_ptr = static_cast<const LookupTaskHandle*>(handle_ptr),
+      [on_resolve = std::move(on_resolve), handle_ptr,
        this](absl::StatusOr<std::vector<ResolvedAddress>> result) mutable {
         {
           grpc_core::MutexLock lock(&mu_);
+          GPR_ASSERT(*handle_ptr != LookupTaskHandle::kInvalid);
           // on_resolved called, no longer inflight.
           GPR_ASSERT(inflight_requests_.erase(*handle_ptr) == 1);
         }
@@ -523,16 +524,17 @@ LookupTaskHandle PosixEventEngine::PosixDNSResolver::LookupSRV(
     LookupSRVCallback on_resolve, absl::string_view name, Duration timeout) {
   grpc_core::MutexLock lock(&mu_);
   // nasty workaround
-  LookupTaskHandle* handle_ptr = nullptr;
+  auto handle_ptr =
+      std::make_shared<LookupTaskHandle>(LookupTaskHandle::kInvalid);
   grpc_ares_request* request = grpc_dns_lookup_srv_ares(
       options_.dns_server.c_str(), std::string(name).c_str(),
       std::make_unique<GrpcPolledFdFactoryPosix>(
           [this](int fd) { return CreateEventHandle(fd); }),
-      [on_resolve = std::move(on_resolve),
-       handle_ptr = static_cast<const LookupTaskHandle*>(handle_ptr), this](
+      [on_resolve = std::move(on_resolve), handle_ptr, this](
           absl::StatusOr<std::vector<DNSResolver::SRVRecord>> result) mutable {
         {
           grpc_core::MutexLock lock(&mu_);
+          GPR_ASSERT(*handle_ptr != LookupTaskHandle::kInvalid);
           // on_resolved called, no longer inflight.
           GPR_ASSERT(inflight_requests_.erase(*handle_ptr) == 1);
         }
@@ -550,16 +552,17 @@ LookupTaskHandle PosixEventEngine::PosixDNSResolver::LookupTXT(
     LookupTXTCallback on_resolve, absl::string_view name, Duration timeout) {
   grpc_core::MutexLock lock(&mu_);
   // nasty workaround
-  LookupTaskHandle* handle_ptr = nullptr;
+  auto handle_ptr =
+      std::make_shared<LookupTaskHandle>(LookupTaskHandle::kInvalid);
   grpc_ares_request* request = grpc_dns_lookup_txt_ares(
       options_.dns_server.c_str(), std::string(name).c_str(),
       std::make_unique<GrpcPolledFdFactoryPosix>(
           [this](int fd) { return CreateEventHandle(fd); }),
-      [on_resolve = std::move(on_resolve),
-       handle_ptr = static_cast<const LookupTaskHandle*>(handle_ptr),
+      [on_resolve = std::move(on_resolve), handle_ptr,
        this](absl::StatusOr<std::string> result) mutable {
         {
           grpc_core::MutexLock lock(&mu_);
+          GPR_ASSERT(*handle_ptr != LookupTaskHandle::kInvalid);
           // on_resolved called, no longer inflight.
           GPR_ASSERT(inflight_requests_.erase(*handle_ptr) == 1);
         }
