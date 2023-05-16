@@ -20,9 +20,6 @@ EXPERIMENTS = {
     "dbg": {
     },
     "off": {
-        "cancel_ares_query_test": [
-            "event_engine_dns",
-        ],
         "census_test": [
             "transport_supplies_client_latency",
         ],
@@ -52,9 +49,6 @@ EXPERIMENTS = {
         ],
         "lame_client_test": [
             "promise_based_client_call",
-        ],
-        "resolver_component_tests_runner_invoker": [
-            "event_engine_dns",
         ],
         "resource_quota_test": [
             "free_large_allocator",
