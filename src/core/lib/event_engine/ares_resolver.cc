@@ -13,9 +13,21 @@
 // limitations under the License.
 #include <grpc/support/port_platform.h>
 
-#include "ares_resolver.h"
+#include "src/core/lib/event_engine/ares_resolver.h"
 
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <stdint.h>
 #include <sys/socket.h>
+
+#include <ratio>
+#include <string>
+#include <vector>
+
+#include "absl/functional/any_invocable.h"
+#include "absl/hash/hash.h"
+#include "absl/status/statusor.h"
 
 #include "src/core/lib/event_engine/ares_resolver.h"
 #include "src/core/lib/iomgr/port.h"
@@ -31,8 +43,6 @@
 #include <type_traits>
 #include <utility>
 
-#include <address_sorting/address_sorting.h>
-
 #include "absl/strings/match.h"
 #include "absl/strings/numbers.h"
 #include "absl/strings/str_cat.h"
@@ -40,20 +50,16 @@
 #include "absl/types/optional.h"
 
 #include <grpc/event_engine/event_engine.h>
-#include <grpc/support/alloc.h>
 #include <grpc/support/log.h>
 
 #include "src/core/lib/address_utils/parse_address.h"
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/event_engine/grpc_polled_fd.h"
 #include "src/core/lib/event_engine/nameser.h"  // IWYU pragma: keep
-#include "src/core/lib/event_engine/tcp_socket_utils.h"
 #include "src/core/lib/event_engine/time_util.h"
 #include "src/core/lib/gprpp/debug_location.h"
-#include "src/core/lib/gprpp/examine_stack.h"
 #include "src/core/lib/gprpp/host_port.h"
 #include "src/core/lib/gprpp/ref_counted_ptr.h"
-#include "src/core/lib/gprpp/status_helper.h"
 #include "src/core/lib/iomgr/resolved_address.h"
 #include "src/core/lib/iomgr/sockaddr.h"
 #ifdef GRPC_POSIX_SOCKET_ARES_EV_DRIVER
