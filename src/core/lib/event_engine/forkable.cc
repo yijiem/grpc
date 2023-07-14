@@ -74,7 +74,8 @@ void PrepareFork() {
     grpc_core::MutexLock lock(g_mu.get());
     for (auto forkable_iter = g_forkables->rbegin();
          forkable_iter != g_forkables->rend(); ++forkable_iter) {
-      GRPC_FORK_TRACE_LOG("Calling PrepareFork for forkable::%p", *forkable_iter);
+      GRPC_FORK_TRACE_LOG("Calling PrepareFork for forkable::%p",
+                          *forkable_iter);
       (*forkable_iter)->PrepareFork();
     }
   }

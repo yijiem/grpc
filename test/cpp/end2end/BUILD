@@ -202,12 +202,12 @@ grpc_cc_test(
     srcs = ["client_fork_test.cc"],
     # TODO(hork): enable epoll1 when its fork implementation is fixed
     exclude_pollers = ["epoll1"],
-    # TODO(hork): locate and fix the 1.5% flake in the poll implementation
-    flaky = True,
     external_deps = [
         "absl/strings",
         "gtest",
     ],
+    # TODO(hork): locate and fix the 1.5% flake in the poll implementation
+    flaky = True,
     tags = [
         "fork_test",
         "no_test_ios",
