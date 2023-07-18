@@ -56,7 +56,7 @@ class PollPoller : public PosixEventPoller, public Forkable {
   ~PollPoller() override;
 
   // Forkable
-  void PrepareFork() override;
+  void PrepareForkLocked() override;
   void PostforkParent() override;
   void PostforkChild() override;
 

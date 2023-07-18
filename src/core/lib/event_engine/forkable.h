@@ -16,6 +16,10 @@
 
 #include <grpc/support/port_platform.h>
 
+#include "absl/base/thread_annotations.h"
+
+#include "src/core/lib/gprpp/sync.h"
+
 namespace grpc_event_engine {
 namespace experimental {
 
@@ -41,9 +45,17 @@ class Forkable {
  public:
   Forkable();
   virtual ~Forkable();
-  virtual void PrepareFork() = 0;
+  virtual void PrepareForkLocked() = 0;
   virtual void PostforkParent() = 0;
   virtual void PostforkChild() = 0;
+
+  void Lock() ABSL_EXCLUSIVE_LOCK_FUNCTION(mu_) { mu_.Lock(); }
+  void Unlock() ABSL_UNLOCK_FUNCTION(mu_) { mu_.Unlock(); }
+
+ private:
+  // Remove itself from the managed set.
+  void StopManagingForkable();
+  grpc_core::Mutex mu_;
 };
 
 // Add Forkables from the set of objects that are supported.
@@ -52,8 +64,6 @@ class Forkable {
 //
 // Relative ordering of fork callback operations is not guaranteed.
 void ManageForkable(Forkable* forkable);
-// Remove a forkable from the managed set.
-void StopManagingForkable(Forkable* forkable);
 
 }  // namespace experimental
 }  // namespace grpc_event_engine

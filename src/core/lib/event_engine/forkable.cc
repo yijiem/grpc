@@ -14,9 +14,13 @@
 
 #include <grpc/support/port_platform.h>
 
-#include "src/core/lib/event_engine/forkable.h"
+#include "forkable.h"
+
+#include <unordered_set>
 
 #include <grpc/support/log.h>
+
+#include "src/core/lib/event_engine/forkable.h"
 
 #ifdef GRPC_POSIX_FORK_ALLOW_PTHREAD_ATFORK
 #include <pthread.h>
@@ -51,7 +55,17 @@ bool IsForkEnabled() {
 
 Forkable::Forkable() { ManageForkable(this); }
 
-Forkable::~Forkable() { StopManagingForkable(this); }
+Forkable::~Forkable() { StopManagingForkable(); }
+
+void Forkable::StopManagingForkable() {
+  if (IsForkEnabled()) {
+    grpc_core::MutexLock g_lock(g_mu.get());
+    grpc_core::MutexLock lock(&mu_);
+    auto iter = std::find(g_forkables->begin(), g_forkables->end(), this);
+    GPR_ASSERT(iter != g_forkables->end());
+    g_forkables->erase(iter);
+  }
+}
 
 void RegisterForkHandlers() {
   if (IsForkEnabled()) {
@@ -66,10 +80,27 @@ void RegisterForkHandlers() {
 
 void PrepareFork() {
   if (IsForkEnabled()) {
-    grpc_core::MutexLock lock(g_mu.get());
-    for (auto forkable_iter = g_forkables->rbegin();
-         forkable_iter != g_forkables->rend(); ++forkable_iter) {
-      (*forkable_iter)->PrepareFork();
+    std::unordered_set<Forkable*> called_forkables;
+    while (true) {
+      g_mu->Lock();
+      Forkable* call_forkable = nullptr;
+      for (auto forkable_iter = g_forkables->rbegin();
+           forkable_iter != g_forkables->rend(); ++forkable_iter) {
+        if (called_forkables.find(*forkable_iter) == called_forkables.end()) {
+          call_forkable = *forkable_iter;
+          called_forkables.insert(call_forkable);
+          break;
+        }
+      }
+      if (call_forkable == nullptr) {
+        // done
+        g_mu->Unlock();
+        break;
+      }
+      call_forkable->Lock();
+      g_mu->Unlock();
+      call_forkable->PrepareForkLocked();
+      call_forkable->Unlock();
     }
   }
 }
@@ -95,15 +126,6 @@ void ManageForkable(Forkable* forkable) {
   if (IsForkEnabled()) {
     grpc_core::MutexLock lock(g_mu.get());
     g_forkables->push_back(forkable);
-  }
-}
-
-void StopManagingForkable(Forkable* forkable) {
-  if (IsForkEnabled()) {
-    grpc_core::MutexLock lock(g_mu.get());
-    auto iter = std::find(g_forkables->begin(), g_forkables->end(), forkable);
-    GPR_ASSERT(iter != g_forkables->end());
-    g_forkables->erase(iter);
   }
 }
 

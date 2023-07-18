@@ -52,7 +52,7 @@ class OriginalThreadPool final : public ThreadPool {
 
   // Forkable
   // Ensures that the thread pool is empty before forking.
-  void PrepareFork() override;
+  void PrepareForkLocked() override;
   void PostforkParent() override;
   void PostforkChild() override;
 

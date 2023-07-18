@@ -829,7 +829,7 @@ void PollPoller::Shutdown() {
   Unref();
 }
 
-void PollPoller::PrepareFork() { Kick(); }
+void PollPoller::PrepareForkLocked() { Kick(); }
 // TODO(vigneshbabu): implement
 void PollPoller::PostforkParent() {}
 // TODO(vigneshbabu): implement
@@ -881,7 +881,7 @@ PollPoller* MakePollPoller(Scheduler* /*scheduler*/,
   return nullptr;
 }
 
-void PollPoller::PrepareFork() { grpc_core::Crash("unimplemented"); }
+void PollPoller::PrepareForkLocked() { grpc_core::Crash("unimplemented"); }
 
 void PollPoller::PostforkParent() { grpc_core::Crash("unimplemented"); }
 

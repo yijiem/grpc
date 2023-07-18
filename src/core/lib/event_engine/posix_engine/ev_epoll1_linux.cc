@@ -573,7 +573,7 @@ Epoll1Poller* MakeEpoll1Poller(Scheduler* scheduler) {
   return nullptr;
 }
 
-void Epoll1Poller::PrepareFork() { Kick(); }
+void Epoll1Poller::PrepareForkLocked() { Kick(); }
 
 // TODO(vigneshbabu): implement
 void Epoll1Poller::PostforkParent() {}
@@ -627,7 +627,7 @@ void Epoll1Poller::Kick() { grpc_core::Crash("unimplemented"); }
 // nullptr.
 Epoll1Poller* MakeEpoll1Poller(Scheduler* /*scheduler*/) { return nullptr; }
 
-void Epoll1Poller::PrepareFork() {}
+void Epoll1Poller::PrepareForkLocked() {}
 
 void Epoll1Poller::PostforkParent() {}
 

@@ -63,7 +63,7 @@ class TimerManager final : public grpc_event_engine::experimental::Forkable {
   // Called on destruction, prefork, and manually when needed.
   void Shutdown();
 
-  void PrepareFork() override;
+  void PrepareForkLocked() override;
   void PostforkParent() override;
   void PostforkChild() override;
 
