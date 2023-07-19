@@ -14,9 +14,11 @@
 
 #include <grpc/support/port_platform.h>
 
-#include "forkable.h"
+#include "src/core/lib/event_engine/forkable.h"
 
 #include <unordered_set>
+
+#include "absl/synchronization/mutex.h"
 
 #include <grpc/support/log.h>
 
