@@ -236,9 +236,12 @@ void OriginalThreadPool::ThreadCount::BlockUntilThreadCount(int threads,
   }
 }
 
-void OriginalThreadPool::PrepareForkLocked() {
-  state_->queue.SetForking(true);
-  state_->thread_count.BlockUntilThreadCount(0, "forking");
+void OriginalThreadPool::PrepareForkLocked(bool* release) {
+  auto state = state_;
+  Unlock();
+  *release = true;
+  state->queue.SetForking(true);
+  state->thread_count.BlockUntilThreadCount(0, "forking");
 }
 
 void OriginalThreadPool::PostforkParent() { Postfork(); }

@@ -99,8 +99,11 @@ void PrepareFork() {
       }
       call_forkable->Lock();
       g_mu->Unlock();
-      call_forkable->PrepareForkLocked();
-      call_forkable->Unlock();
+      bool release = false;
+      call_forkable->PrepareForkLocked(&release);
+      if (!release) {
+        call_forkable->Unlock();
+      }
     }
   }
 }

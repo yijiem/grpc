@@ -165,7 +165,7 @@ void TimerManager::RestartPostFork() {
   StartMainLoopThread();
 }
 
-void TimerManager::PrepareForkLocked() { Shutdown(); }
+void TimerManager::PrepareForkLocked(bool* release) { Shutdown(); }
 void TimerManager::PostforkParent() { RestartPostFork(); }
 void TimerManager::PostforkChild() { RestartPostFork(); }
 

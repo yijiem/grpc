@@ -829,7 +829,7 @@ void PollPoller::Shutdown() {
   Unref();
 }
 
-void PollPoller::PrepareForkLocked() { Kick(); }
+void PollPoller::PrepareForkLocked(bool* release) { Kick(); }
 // TODO(vigneshbabu): implement
 void PollPoller::PostforkParent() {}
 // TODO(vigneshbabu): implement

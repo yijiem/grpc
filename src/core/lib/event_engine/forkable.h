@@ -45,7 +45,7 @@ class Forkable {
  public:
   Forkable();
   virtual ~Forkable();
-  virtual void PrepareForkLocked() = 0;
+  virtual void PrepareForkLocked(bool* release) = 0;
   virtual void PostforkParent() = 0;
   virtual void PostforkChild() = 0;
 

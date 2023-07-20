@@ -69,7 +69,7 @@ class Epoll1Poller : public PosixEventPoller, public Forkable {
   ~Epoll1Poller() override;
 
   // Forkable
-  void PrepareForkLocked() override;
+  void PrepareForkLocked(bool* release) override;
   void PostforkParent() override;
   void PostforkChild() override;
 

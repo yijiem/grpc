@@ -573,7 +573,7 @@ Epoll1Poller* MakeEpoll1Poller(Scheduler* scheduler) {
   return nullptr;
 }
 
-void Epoll1Poller::PrepareForkLocked() { Kick(); }
+void Epoll1Poller::PrepareForkLocked(bool* release) { Kick(); }
 
 // TODO(vigneshbabu): implement
 void Epoll1Poller::PostforkParent() {}

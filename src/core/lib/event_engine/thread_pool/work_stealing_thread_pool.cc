@@ -117,7 +117,9 @@ EventEngine::Closure* WorkStealingThreadPool::TheftRegistry::StealOne() {
   return nullptr;
 }
 
-void WorkStealingThreadPool::PrepareForkLocked() { pool_->PrepareFork(); }
+void WorkStealingThreadPool::PrepareForkLocked(bool* release) {
+  pool_->PrepareFork();
+}
 
 void WorkStealingThreadPool::PostforkParent() { pool_->Postfork(); }
 
