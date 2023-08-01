@@ -14,6 +14,8 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <iostream>
+
 #include "absl/strings/str_split.h"
 #include "absl/strings/string_view.h"
 
@@ -22,8 +24,6 @@
 #include "src/core/lib/event_engine/posix_engine/ev_poll_posix.h"
 #include "src/core/lib/event_engine/posix_engine/event_poller.h"
 #include "src/core/lib/iomgr/port.h"
-
-#include <iostream>
 
 namespace grpc_event_engine {
 namespace experimental {
