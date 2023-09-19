@@ -2414,7 +2414,6 @@ grpc_cc_library(
     ],
     deps = [
         "common_event_engine_closures",
-        "error",
         "event_engine_time_util",
         "grpc_sockaddr",
         "iomgr_port",
@@ -2422,6 +2421,7 @@ grpc_cc_library(
         "posix_event_engine_event_poller",
         "posix_event_engine_tcp_socket_utils",
         "resolved_address",
+        "slice",
         "windows_iocp",
         "//:debug_location",
         "//:event_engine_base_hdrs",
