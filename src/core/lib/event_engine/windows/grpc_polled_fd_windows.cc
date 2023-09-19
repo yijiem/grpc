@@ -23,7 +23,7 @@
 #include "absl/functional/any_invocable.h"
 #include "absl/status/status.h"
 
-#include "grpc/support/log_windows.h"
+#include <grpc/support/log_windows.h>
 
 #include "src/core/lib/address_utils/sockaddr_utils.h"
 #include "src/core/lib/event_engine/ares_resolver.h"
