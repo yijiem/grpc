@@ -343,11 +343,11 @@ void EventEngineClientChannelDNSResolver::EventEngineDNSRequestWrapper::
         absl::StatusOr<std::vector<EventEngine::DNSResolver::SRVRecord>>
             srv_records) {
   absl::optional<Resolver::Result> result;
-  auto cleanup = absl::MakeCleanup([&]() {
+  absl::Cleanup cleanup = [&]() {
     if (result.has_value()) {
       resolver_->OnRequestComplete(std::move(*result));
     }
-  });
+  };
   MutexLock lock(&on_resolved_mu_);
   // Make sure field destroys before cleanup.
   ValidationErrors::ScopedField field(&errors_, "srv lookup");
@@ -397,11 +397,11 @@ void EventEngineClientChannelDNSResolver::EventEngineDNSRequestWrapper::
         absl::StatusOr<std::vector<EventEngine::ResolvedAddress>>
             new_balancer_addresses) {
   absl::optional<Resolver::Result> result;
-  auto cleanup = absl::MakeCleanup([&]() {
+  absl::Cleanup cleanup = [&]() {
     if (result.has_value()) {
       resolver_->OnRequestComplete(std::move(*result));
     }
-  });
+  };
   MutexLock lock(&on_resolved_mu_);
   // Make sure field destroys before cleanup.
   ValidationErrors::ScopedField field(
