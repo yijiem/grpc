@@ -79,7 +79,7 @@ class ArrayEncoder {
   template <typename Which>
   void Encode(Which, const typename Which::ValueType& value) {
     Append(Slice(StaticSlice::FromStaticString(Which::key())),
-           Slice(Which::Encode(value)));
+           (Which::Encode(value)));
   }
 
   void Encode(HttpMethodMetadata,

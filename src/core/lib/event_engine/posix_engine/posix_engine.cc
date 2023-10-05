@@ -136,7 +136,7 @@ void AsyncConnect::OnWritable(absl::Status status)
     ++consumed_refs;
   }
 
-  auto on_writable_finish = absl::MakeCleanup([&]() -> void {
+  absl::Cleanup on_writable_finish = [&]() -> void {
     mu_.AssertHeld();
     if (!connect_cancelled) {
       reinterpret_cast<PosixEventEngine*>(engine_.get())
@@ -164,7 +164,7 @@ void AsyncConnect::OnWritable(absl::Status status)
     if (done) {
       delete this;
     }
-  });
+  };
 
   mu_.Lock();
   if (!status.ok() || connect_cancelled) {
