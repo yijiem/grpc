@@ -735,8 +735,7 @@ class CronetMetadataEncoder {
 
   template <class T, class V>
   void Encode(T, const V& value) {
-    Encode(grpc_core::Slice::FromStaticString(T::key()),
-           grpc_core::Slice(T::Encode(value)));
+    Encode(grpc_core::Slice::FromStaticString(T::key()), (T::Encode(value)));
   }
 
   void Encode(grpc_core::HttpSchemeMetadata,
