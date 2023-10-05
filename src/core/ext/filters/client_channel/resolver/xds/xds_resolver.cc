@@ -571,7 +571,7 @@ XdsResolver::RouteConfigData::CreateMethodConfig(
         absl::StrJoin(fields, ",\n"),
         "\n  } ]\n"
         "}");
-    return ServiceConfigImpl::Create(result->args, json.c_str());
+    return ServiceConfigImpl::Create(result->args, json);
   }
   return nullptr;
 }
@@ -1190,7 +1190,7 @@ XdsResolver::CreateServiceConfig() {
       "  ]\n"
       "}");
   std::string json = absl::StrJoin(config_parts, "");
-  return ServiceConfigImpl::Create(args_, json.c_str());
+  return ServiceConfigImpl::Create(args_, json);
 }
 
 void XdsResolver::GenerateResult() {
