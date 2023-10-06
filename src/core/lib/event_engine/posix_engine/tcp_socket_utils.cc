@@ -117,11 +117,11 @@ absl::Status PrepareTcpClientSocket(PosixSocketWrapper sock,
                                     const EventEngine::ResolvedAddress& addr,
                                     const PosixTcpOptions& options) {
   bool close_fd = true;
-  auto sock_cleanup = absl::MakeCleanup([&close_fd, &sock]() -> void {
+  absl::Cleanup sock_cleanup = [&close_fd, &sock]() -> void {
     if (close_fd and sock.Fd() >= 0) {
       close(sock.Fd());
     }
-  });
+  };
   GRPC_RETURN_IF_ERROR(sock.SetSocketNonBlocking(1));
   GRPC_RETURN_IF_ERROR(sock.SetSocketCloexec(1));
   if (options.tcp_receive_buffer_size != options.kReadBufferSizeUnset) {
