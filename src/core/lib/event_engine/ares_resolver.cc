@@ -254,10 +254,8 @@ void AresResolver::LookupHostname(
   // src/core/lib/address_utils to use EventEngine::ResolvedAddress.
   grpc_resolved_address addr;
   const std::string hostport = grpc_core::JoinHostPort(host, port);
-  if (grpc_parse_ipv4_hostport(hostport.c_str(), &addr,
-                               false /* log errors */) ||
-      grpc_parse_ipv6_hostport(hostport.c_str(), &addr,
-                               false /* log errors */)) {
+  if (grpc_parse_ipv4_hostport(hostport, &addr, false /* log errors */) ||
+      grpc_parse_ipv6_hostport(hostport, &addr, false /* log errors */)) {
     // Early out if the target is an ipv4 or ipv6 literal.
     std::vector<EventEngine::ResolvedAddress> result;
     result.emplace_back(reinterpret_cast<sockaddr*>(addr.addr), addr.len);
