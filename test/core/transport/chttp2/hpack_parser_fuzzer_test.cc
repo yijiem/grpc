@@ -57,7 +57,7 @@ DEFINE_PROTO_FUZZER(const hpack_parser_fuzzer::Msg& msg) {
   grpc_core::ApplyFuzzConfigVars(msg.config_vars());
   grpc_core::TestOnlyReloadExperimentsFromConfigVariables();
   grpc_init();
-  auto cleanup = absl::MakeCleanup(grpc_shutdown);
+  absl::Cleanup cleanup = grpc_shutdown;
   auto memory_allocator = grpc_core::ResourceQuota::Default()
                               ->memory_quota()
                               ->CreateMemoryAllocator("test-allocator");
