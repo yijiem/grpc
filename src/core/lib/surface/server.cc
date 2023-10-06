@@ -502,8 +502,7 @@ class Server::AllocatingRequestMatcherBatch
   void MatchOrQueue(size_t /*start_request_queue_index*/,
                     CallData* calld) override {
     const bool still_running = server()->ShutdownRefOnRequest();
-    auto cleanup_ref =
-        absl::MakeCleanup([this] { server()->ShutdownUnrefOnRequest(); });
+    absl::Cleanup cleanup_ref = [this] { server()->ShutdownUnrefOnRequest(); };
     if (still_running) {
       BatchCallAllocation call_info = allocator_();
       GPR_ASSERT(server()->ValidateServerRequest(
@@ -548,8 +547,7 @@ class Server::AllocatingRequestMatcherRegistered
 
   void MatchOrQueue(size_t /*start_request_queue_index*/,
                     CallData* calld) override {
-    auto cleanup_ref =
-        absl::MakeCleanup([this] { server()->ShutdownUnrefOnRequest(); });
+    absl::Cleanup cleanup_ref = [this] { server()->ShutdownUnrefOnRequest(); };
     if (server()->ShutdownRefOnRequest()) {
       RegisteredCallAllocation call_info = allocator_();
       GPR_ASSERT(server()->ValidateServerRequest(
@@ -1170,7 +1168,7 @@ void Server::ChannelData::InitTransport(RefCountedPtr<Server> server,
       Slice method = Slice::FromExternalString(rm->method);
       const bool has_host = !rm->host.empty();
       if (has_host) {
-        host = Slice::FromExternalString(rm->host.c_str());
+        host = Slice::FromExternalString(rm->host);
       }
       uint32_t hash = MixHash32(has_host ? host.Hash() : 0, method.Hash());
       uint32_t probes = 0;
@@ -1310,8 +1308,7 @@ ArenaPromise<ServerMetadataHandle> Server::ChannelData::MakeCallPromise(
   absl::optional<Slice> path =
       call_args.client_initial_metadata->Take(HttpPathMetadata());
   if (server->ShutdownCalled()) return CancelledDueToServerShutdown();
-  auto cleanup_ref =
-      absl::MakeCleanup([server] { server->ShutdownUnrefOnRequest(); });
+  absl::Cleanup cleanup_ref = [server] { server->ShutdownUnrefOnRequest(); };
   if (!server->ShutdownRefOnRequest()) return CancelledDueToServerShutdown();
   if (!path.has_value()) {
     return [] {
