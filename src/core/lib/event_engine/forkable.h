@@ -16,9 +16,6 @@
 
 #include <grpc/support/port_platform.h>
 
-#include <memory>
-#include <vector>
-
 #include <grpc/support/log.h>
 
 #include "src/core/lib/debug/trace.h"
