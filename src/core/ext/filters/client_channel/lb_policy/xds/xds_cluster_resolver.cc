@@ -1007,8 +1007,7 @@ XdsClusterResolverLbConfig::DiscoveryMechanism::JsonLoader(const JsonArgs&) {
                          &DiscoveryMechanism::outlier_detection_lb_config)
           .OptionalField("overrideHostStatus",
                          &DiscoveryMechanism::override_host_statuses)
-          .OptionalField("serviceLabels",
-                         &DiscoveryMechanism::service_labels)
+          .OptionalField("serviceLabels", &DiscoveryMechanism::service_labels)
           .Finish();
   return loader;
 }
