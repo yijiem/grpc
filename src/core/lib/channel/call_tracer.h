@@ -21,6 +21,8 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <cstdint>
+#include <map>
 #include <memory>
 #include <string>
 

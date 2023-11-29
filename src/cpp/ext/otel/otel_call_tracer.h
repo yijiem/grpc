@@ -21,8 +21,10 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <stddef.h>
 #include <stdint.h>
 
+#include <map>
 #include <memory>
 #include <string>
 
@@ -35,6 +37,7 @@
 
 #include "src/core/lib/channel/call_tracer.h"
 #include "src/core/lib/channel/tcp_tracer.h"
+#include "src/core/lib/gprpp/chunked_vector.h"
 #include "src/core/lib/gprpp/sync.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/resource_quota/arena.h"

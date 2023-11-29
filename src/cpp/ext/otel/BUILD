@@ -72,6 +72,7 @@ grpc_cc_library(
         "//src/core:channel_args",
         "//src/core:channel_fwd",
         "//src/core:channel_stack_type",
+        "//src/core:chunked_vector",
         "//src/core:context",
         "//src/core:error",
         "//src/core:slice",
