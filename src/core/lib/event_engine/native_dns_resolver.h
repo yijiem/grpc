@@ -17,6 +17,10 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <memory>
+
+#include "absl/strings/string_view.h"
+
 #include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/event_engine/dns_resolver.h"
