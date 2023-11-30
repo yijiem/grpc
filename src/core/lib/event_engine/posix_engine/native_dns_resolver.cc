@@ -15,18 +15,28 @@
 #include <grpc/support/port_platform.h>
 
 #include <netdb.h>
+#include <sys/socket.h>
+
+#include <memory>
+#include <string>
+#include <type_traits>
+#include <utility>
+#include <vector>
+
+#include "absl/functional/any_invocable.h"
+#include "absl/status/status.h"
+#include "absl/status/statusor.h"
+#include "absl/strings/str_cat.h"
+#include "absl/strings/str_format.h"
+#include "absl/strings/string_view.h"
+
+#include <grpc/event_engine/event_engine.h>
 
 #include "src/core/lib/iomgr/port.h"
 
 #ifdef GRPC_POSIX_SOCKET_RESOLVE_ADDRESS
 
 #include <string.h>
-#include <sys/types.h>
-
-#include <grpc/support/alloc.h>
-#include <grpc/support/log.h>
-#include <grpc/support/string_util.h>
-#include <grpc/support/time.h>
 
 #include "src/core/lib/event_engine/native_dns_resolver.h"
 #include "src/core/lib/gpr/useful.h"
