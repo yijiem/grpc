@@ -328,7 +328,7 @@ MATCHER(VerifyServiceLabels, "") {
   return false;
 }
 
-static grpc_core::FakeClientCallTracer* g_fake_client_call_tracer;
+grpc_core::FakeClientCallTracer* g_fake_client_call_tracer;
 
 TEST_P(CdsTest, VerifyServiceLabelsParsing) {
   CreateAndStartBackends(1);
