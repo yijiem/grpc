@@ -36,8 +36,7 @@ class FakeClientCallTracer : public ClientCallTracer {
         : annotation_logger_(annotation_logger) {}
     ~FakeClientCallAttemptTracer() override {
       std::cout << "~FakeClientCallAttemptTracer: " << this << "\n";
-      absl::optional<std::string> stacktrace =
-          grpc_core::GetCurrentStackTrace();
+      absl::optional<std::string> stacktrace = GetCurrentStackTrace();
       if (stacktrace.has_value()) {
         gpr_log(GPR_DEBUG, "%s", stacktrace->c_str());
       } else {
