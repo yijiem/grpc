@@ -15,6 +15,8 @@
 #ifndef GRPC_SRC_CORE_LIB_CHANNEL_METRICS_H
 #define GRPC_SRC_CORE_LIB_CHANNEL_METRICS_H
 
+#include <grpc/support/port_platform.h>
+
 #include <atomic>
 #include <cstdint>
 #include <memory>
@@ -103,7 +105,7 @@ class StatsPlugin {
  public:
   virtual ~StatsPlugin() = default;
   virtual bool IsEnabledForTarget(absl::string_view target) = 0;
-  virtual bool IsEnabledForServer(grpc_core::ChannelArgs& args) = 0;
+  virtual bool IsEnabledForServer(ChannelArgs& args) = 0;
 
   virtual void AddCounter(
       GlobalInstrumentsRegistry::GlobalUInt64CounterHandle handle,
@@ -188,7 +190,7 @@ class GlobalStatsPluginRegistry {
   // a specified scope.
   StatsPluginsGroup GetStatsPluginsForTarget(absl::string_view target);
   // TODO(yijiem): Implement this.
-  // StatsPluginsGroup GetStatsPluginsForServer(grpc_core::ChannelArgs& args);
+  // StatsPluginsGroup GetStatsPluginsForServer(ChannelArgs& args);
 
   static GlobalStatsPluginRegistry& Get() {
     GlobalStatsPluginRegistry* p = self_.load(std::memory_order_acquire);
