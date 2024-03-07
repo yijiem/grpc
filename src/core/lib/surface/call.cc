@@ -822,15 +822,15 @@ grpc_error_handle FilterStackCall::Create(grpc_call_create_args* args,
     call->send_initial_metadata_.Set(
         GrpcRegisteredMethod(), reinterpret_cast<void*>(static_cast<uintptr_t>(
                                     args->registered_method)));
-    grpc_core::StatsPlugin::ChannelScope scope(channel->target(),
-                                               /*authority=*/"");
-    grpc_core::GlobalStatsPluginRegistry::GetStatsPluginsForChannel(scope)
-        .ForEach([&](std::shared_ptr<grpc_core::StatsPlugin> stats_plugin) {
+    StatsPlugin::ChannelScope scope(channel->target(),
+                                    /*authority=*/"");
+    GlobalStatsPluginRegistry::GetStatsPluginsForChannel(scope).ForEach(
+        [&](std::shared_ptr<StatsPlugin> stats_plugin) {
           if (stats_plugin->IsEnabledForChannel(scope)) {
-            grpc_core::AddClientCallTracerToContext(
+            AddClientCallTracerToContext(
                 call->context_, stats_plugin->GetClientCallTracer(
-                                    channel->target(), grpc_core::Slice(path),
-                                    arena, args->registered_method));
+                                    channel->target(), Slice(path), arena,
+                                    args->registered_method));
           }
         });
   } else {
@@ -841,10 +841,10 @@ grpc_error_handle FilterStackCall::Create(grpc_call_create_args* args,
     // collecting from when the call is created at the transport. The idea is
     // that the transport would create the call tracer and pass it in as part of
     // the metadata.
-    grpc_core::GlobalStatsPluginRegistry::GetStatsPluginsForServer(
+    GlobalStatsPluginRegistry::GetStatsPluginsForServer(
         args->server->channel_args())
-        .ForEach([&](std::shared_ptr<grpc_core::StatsPlugin> stats_plugin) {
-          grpc_core::AddServerCallTracerToContext(
+        .ForEach([&](std::shared_ptr<StatsPlugin> stats_plugin) {
+          AddServerCallTracerToContext(
               call->context_, stats_plugin->GetServerCallTracerFactory(arena)
                                   ->CreateNewServerCallTracer(
                                       arena, args->server->channel_args()));
@@ -2753,13 +2753,12 @@ class ClientPromiseBasedCall final : public PromiseBasedCall {
       }
       PublishToParent(parent);
     }
-    grpc_core::StatsPlugin::ChannelScope scope(args->channel->target(),
-                                               /*authority=*/"");
-    grpc_core::GlobalStatsPluginRegistry::GetStatsPluginsForChannel(scope)
-        .ForEach([&,
-                  this](std::shared_ptr<grpc_core::StatsPlugin> stats_plugin) {
+    StatsPlugin::ChannelScope scope(args->channel->target(),
+                                    /*authority=*/"");
+    GlobalStatsPluginRegistry::GetStatsPluginsForChannel(scope).ForEach(
+        [&, this](std::shared_ptr<StatsPlugin> stats_plugin) {
           if (stats_plugin->IsEnabledForChannel(scope)) {
-            grpc_core::AddClientCallTracerToContext(
+            AddClientCallTracerToContext(
                 this->context(), stats_plugin->GetClientCallTracer(
                                      args->channel->target(), std::move(path),
                                      arena, args->registered_method));
@@ -3410,10 +3409,10 @@ ServerPromiseBasedCall::ServerPromiseBasedCall(Arena* arena,
   // collecting from when the call is created at the transport. The idea is that
   // the transport would create the call tracer and pass it in as part of the
   // metadata.
-  grpc_core::GlobalStatsPluginRegistry::GetStatsPluginsForServer(
+  GlobalStatsPluginRegistry::GetStatsPluginsForServer(
       args->server->channel_args())
-      .ForEach([&, this](std::shared_ptr<grpc_core::StatsPlugin> stats_plugin) {
-        grpc_core::AddServerCallTracerToContext(
+      .ForEach([&, this](std::shared_ptr<StatsPlugin> stats_plugin) {
+        AddServerCallTracerToContext(
             this->context(), stats_plugin->GetServerCallTracerFactory(arena)
                                  ->CreateNewServerCallTracer(
                                      arena, args->server->channel_args()));
