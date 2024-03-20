@@ -178,7 +178,7 @@ class FakeServerCallTracer : public ServerCallTracer {
 
 grpc_transport_stream_stats FakeServerCallTracer::transport_stream_stats_;
 
-class FakeStatsPlugin : public grpc_core::FakeStatsPlugin {
+class FakeStatsPlugin : public FakeStatsPlugin {
  public:
   ClientCallTracer* GetClientCallTracer(
       const Slice& /*path*/, bool /*registered_method*/,
@@ -199,7 +199,7 @@ CORE_END2END_TEST(Http2FullstackSingleHopTest, StreamStats) {
   g_mu = new Mutex();
   g_client_call_ended_notify = new Notification();
   g_server_call_ended_notify = new Notification();
-  grpc_core::GlobalStatsPluginRegistry::RegisterStatsPlugin(
+  GlobalStatsPluginRegistry::RegisterStatsPlugin(
       std::make_shared<FakeStatsPlugin>());
   auto send_from_client = RandomSlice(10);
   auto send_from_server = RandomSlice(20);
