@@ -20662,6 +20662,7 @@ targets:
   run: false
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/connection_attempt_injector.h
   - test/cpp/end2end/counted_service.h
@@ -20703,6 +20704,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/connection_attempt_injector.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_cluster_type_end2end_test.cc
@@ -20865,6 +20867,7 @@ targets:
   language: c++
   headers:
   - src/cpp/server/csds/csds.h
+  - test/core/util/fake_stats_plugin.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
   - test/cpp/end2end/xds/xds_end2end_test_lib.h
@@ -20906,6 +20909,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
   - src/cpp/server/csds/csds.cc
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_csds_end2end_test.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
@@ -20927,6 +20931,7 @@ targets:
   language: c++
   headers:
   - test/core/util/audit_logging_utils.h
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
@@ -20972,6 +20977,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/tls.proto
   - src/proto/grpc/testing/xds/v3/typed_struct.proto
   - test/core/util/audit_logging_utils.cc
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
@@ -21011,6 +21017,7 @@ targets:
   build: test
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
@@ -21050,6 +21057,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
   - test/cpp/end2end/xds/xds_fallback_end2end_test.cc
@@ -21070,6 +21078,7 @@ targets:
   run: false
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
   - test/cpp/end2end/xds/xds_end2end_test_lib.h
@@ -21110,6 +21119,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
   - test/cpp/end2end/xds/xds_fault_injection_end2end_test.cc
@@ -21265,6 +21275,7 @@ targets:
   run: false
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
   - test/cpp/end2end/xds/xds_end2end_test_lib.h
@@ -21305,6 +21316,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
   - test/cpp/end2end/xds/xds_outlier_detection_end2end_test.cc
@@ -21324,6 +21336,7 @@ targets:
   build: test
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
@@ -21366,6 +21379,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/stateful_session.proto
   - src/proto/grpc/testing/xds/v3/stateful_session_cookie.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
   - test/cpp/end2end/xds/xds_override_host_end2end_test.cc
@@ -21415,6 +21429,7 @@ targets:
   build: test
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/connection_attempt_injector.h
   - test/cpp/end2end/counted_service.h
@@ -21457,6 +21472,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/connection_attempt_injector.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
@@ -21478,6 +21494,7 @@ targets:
   run: false
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/cpp/end2end/connection_attempt_injector.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
@@ -21518,6 +21535,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/connection_attempt_injector.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
@@ -21538,6 +21556,7 @@ targets:
   build: test
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/core/util/scoped_env_var.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/rls_server.h
@@ -21580,6 +21599,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/rls_server.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
@@ -21644,6 +21664,7 @@ targets:
   run: false
   language: c++
   headers:
+  - test/core/util/fake_stats_plugin.h
   - test/cpp/end2end/counted_service.h
   - test/cpp/end2end/test_service_impl.h
   - test/cpp/end2end/xds/xds_end2end_test_lib.h
@@ -21684,6 +21705,7 @@ targets:
   - src/proto/grpc/testing/xds/v3/route.proto
   - src/proto/grpc/testing/xds/v3/router.proto
   - src/proto/grpc/testing/xds/v3/string.proto
+  - test/core/util/fake_stats_plugin.cc
   - test/cpp/end2end/test_service_impl.cc
   - test/cpp/end2end/xds/xds_end2end_test_lib.cc
   - test/cpp/end2end/xds/xds_routing_end2end_test.cc
