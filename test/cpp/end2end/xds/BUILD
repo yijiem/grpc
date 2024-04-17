@@ -90,6 +90,7 @@ grpc_cc_library(
         "//src/proto/grpc/testing/xds/v3:lrs_proto",
         "//src/proto/grpc/testing/xds/v3:route_proto",
         "//src/proto/grpc/testing/xds/v3:router_proto",
+        "//test/core/util:fake_stats_plugin",
         "//test/core/util:grpc_test_util",
         "//test/cpp/end2end:counted_service",
         "//test/cpp/end2end:test_service_impl",

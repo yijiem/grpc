@@ -47,6 +47,7 @@
 #include "src/proto/grpc/testing/xds/v3/http_filter_rbac.grpc.pb.h"
 #include "src/proto/grpc/testing/xds/v3/orca_load_report.pb.h"
 #include "src/proto/grpc/testing/xds/v3/rbac.pb.h"
+#include "test/core/util/fake_stats_plugin.h"
 #include "test/core/util/port.h"
 #include "test/cpp/end2end/counted_service.h"
 #include "test/cpp/end2end/test_service_impl.h"
@@ -964,6 +965,8 @@ class XdsEnd2endTest : public ::testing::TestWithParam<XdsTestType>,
   // Returns client credentials suitable for using as fallback
   // credentials for XdsCredentials.
   static std::shared_ptr<ChannelCredentials> CreateTlsFallbackCredentials();
+
+  grpc_core::FakeClientCallTracerFactory fake_client_call_tracer_factory_;
 
   std::unique_ptr<BalancerServerThread> balancer_;
 

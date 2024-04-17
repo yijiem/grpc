@@ -309,8 +309,6 @@ TEST_P(CdsTest, ClusterChangeAfterAdsCallFails) {
 }
 
 TEST_P(CdsTest, MetricLabels) {
-  // Injects a fake client call tracer factory. Try keep this at top.
-  grpc_core::FakeClientCallTracerFactory fake_client_call_tracer_factory;
   CreateAndStartBackends(2);
   // Populates EDS resources.
   EdsResourceArgs args({{"locality0", CreateEndpointsForBackends(0, 1)},
@@ -326,13 +324,13 @@ TEST_P(CdsTest, MetricLabels) {
   balancer_->ads_service()->SetCdsResource(cluster);
   ChannelArguments channel_args;
   channel_args.SetPointer(GRPC_ARG_INJECT_FAKE_CLIENT_CALL_TRACER_FACTORY,
-                          &fake_client_call_tracer_factory);
+                          &fake_client_call_tracer_factory_);
   ResetStub(/*failover_timeout_ms=*/0, &channel_args);
   // Send an RPC to backend 0.
   WaitForBackend(DEBUG_LOCATION, 0);
   // Verify that the optional labels are recorded in the call tracer.
   EXPECT_THAT(
-      fake_client_call_tracer_factory.GetLastFakeClientCallTracer()
+      fake_client_call_tracer_factory_.GetLastFakeClientCallTracer()
           ->GetLastCallAttemptTracer()
           ->GetOptionalLabels(),
       ::testing::ElementsAre(
@@ -346,7 +344,7 @@ TEST_P(CdsTest, MetricLabels) {
   // Verify that the optional labels are recorded in the call
   // tracer.
   EXPECT_THAT(
-      fake_client_call_tracer_factory.GetLastFakeClientCallTracer()
+      fake_client_call_tracer_factory_.GetLastFakeClientCallTracer()
           ->GetLastCallAttemptTracer()
           ->GetOptionalLabels(),
       ::testing::ElementsAre(
@@ -355,13 +353,6 @@ TEST_P(CdsTest, MetricLabels) {
                           "mynamespace"),
           ::testing::Pair(OptionalLabelKey::kLocality,
                           LocalityNameString("locality1"))));
-  // TODO(yashkt, yijiem): This shutdown shouldn't actually be necessary. The
-  // only reason it's here is to add a delay before
-  // fake_client_call_tracer_factory goes out of scope, since there may be
-  // lingering callbacks in the call stack that are using the CallAttemptTracer
-  // even after we get here, which would then cause a crash.  Find a cleaner way
-  // to fix this.
-  balancer_->Shutdown();
 }
 
 //
