@@ -136,8 +136,7 @@ class FakeClientCallTracer : public ClientCallTracer {
 
  private:
   std::vector<std::string>* annotation_logger_;
-  std::vector<grpc_core::RefCountedPtr<FakeClientCallAttemptTracer>>
-      call_attempt_tracers_;
+  std::vector<RefCountedPtr<FakeClientCallAttemptTracer>> call_attempt_tracers_;
 };
 
 #define GRPC_ARG_INJECT_FAKE_CLIENT_CALL_TRACER_FACTORY \
