@@ -33,7 +33,6 @@
 #include "absl/strings/str_format.h"
 #include "absl/strings/str_join.h"
 #include "absl/types/optional.h"
-#include "gmock/gmock.h"
 
 #include <grpc/credentials.h>
 #include <grpcpp/channel.h>
