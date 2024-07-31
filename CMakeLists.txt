@@ -883,6 +883,57 @@ protobuf_generate_grpc_cpp_with_import_path_correction(
 protobuf_generate_grpc_cpp_with_import_path_correction(
   test/core/tsi/alts/fake_handshaker/transport_security_common.proto test/core/tsi/alts/fake_handshaker/transport_security_common.proto
 )
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/annotations.proto google/api/annotations.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/client.proto google/api/client.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/distribution.proto google/api/distribution.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/field_behavior.proto google/api/field_behavior.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/http.proto google/api/http.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/label.proto google/api/label.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/launch_stage.proto google/api/launch_stage.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/metric.proto google/api/metric.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/monitored_resource.proto google/api/monitored_resource.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/api/resource.proto google/api/resource.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/type/http_request.proto google/logging/type/http_request.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/type/log_severity.proto google/logging/type/log_severity.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/v2/log_entry.proto google/logging/v2/log_entry.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/v2/logging.proto google/logging/v2/logging.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/v2/logging_config.proto google/logging/v2/logging_config.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/logging/v2/logging_metrics.proto google/logging/v2/logging_metrics.proto
+)
+protobuf_generate_grpc_cpp_with_import_path_correction(
+  third_party/googleapis/google/rpc/status.proto google/rpc/status.proto
+)
 
 if(gRPC_BUILD_TESTS)
   add_custom_target(buildtests_c)
@@ -5775,7 +5826,87 @@ endif()
 endif()
 if(gRPC_BUILD_GRPCPP_OTEL_PLUGIN)
 
+if(gRPC_BUILD_CODEGEN)
 add_library(grpcpp_otel_plugin
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.grpc.pb.h
+  src/core/ext/filters/logging/logging_filter.cc
+  src/cpp/ext/filters/census/client_filter.cc
+  src/cpp/ext/filters/census/context.cc
+  src/cpp/ext/filters/census/grpc_plugin.cc
+  src/cpp/ext/filters/census/measures.cc
+  src/cpp/ext/filters/census/rpc_encoding.cc
+  src/cpp/ext/filters/census/server_call_tracer.cc
+  src/cpp/ext/filters/census/views.cc
+  src/cpp/ext/gcp/environment_autodetect.cc
+  src/cpp/ext/gcp/observability_config.cc
+  src/cpp/ext/gcp/observability_logging_sink.cc
   src/cpp/ext/otel/otel_client_call_tracer.cc
   src/cpp/ext/otel/otel_plugin.cc
   src/cpp/ext/otel/otel_server_call_tracer.cc
@@ -5823,12 +5954,15 @@ target_include_directories(grpcpp_otel_plugin
 )
 target_link_libraries(grpcpp_otel_plugin
   ${_gRPC_ALLTARGETS_LIBRARIES}
+  absl::endian
+  absl::int128
   grpc++
   opentelemetry-cpp::api
 )
 
 foreach(_hdr
   include/grpcpp/ext/otel_plugin.h
+  include/grpcpp/opencensus.h
 )
   string(REPLACE "include/" "" _path ${_hdr})
   get_filename_component(_path ${_path} PATH)
@@ -5836,7 +5970,9 @@ foreach(_hdr
     DESTINATION "${gRPC_INSTALL_INCLUDEDIR}/${_path}"
   )
 endforeach()
+endif()
 
+if(gRPC_BUILD_CODEGEN)
 
 if(gRPC_INSTALL)
   install(TARGETS grpcpp_otel_plugin EXPORT gRPCTargets
@@ -5847,6 +5983,7 @@ if(gRPC_INSTALL)
   )
 endif()
 
+endif()
 endif()
 
 if(gRPC_BUILD_TESTS)
@@ -21828,6 +21965,85 @@ add_executable(otel_plugin_test
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/xds/v3/orca_load_report.grpc.pb.cc
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/xds/v3/orca_load_report.pb.h
   ${_gRPC_PROTO_GENS_DIR}/src/proto/grpc/testing/xds/v3/orca_load_report.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/annotations.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/client.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/distribution.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/field_behavior.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/http.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/label.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/launch_stage.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/metric.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/monitored_resource.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/api/resource.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/http_request.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/type/log_severity.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/log_entry.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_config.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/logging/v2/logging_metrics.grpc.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.grpc.pb.cc
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.pb.h
+  ${_gRPC_PROTO_GENS_DIR}/google/rpc/status.grpc.pb.h
+  src/core/ext/filters/logging/logging_filter.cc
+  src/cpp/ext/filters/census/client_filter.cc
+  src/cpp/ext/filters/census/context.cc
+  src/cpp/ext/filters/census/grpc_plugin.cc
+  src/cpp/ext/filters/census/measures.cc
+  src/cpp/ext/filters/census/rpc_encoding.cc
+  src/cpp/ext/filters/census/server_call_tracer.cc
+  src/cpp/ext/filters/census/views.cc
+  src/cpp/ext/gcp/environment_autodetect.cc
+  src/cpp/ext/gcp/observability_config.cc
+  src/cpp/ext/gcp/observability_logging_sink.cc
   src/cpp/ext/otel/otel_client_call_tracer.cc
   src/cpp/ext/otel/otel_plugin.cc
   src/cpp/ext/otel/otel_server_call_tracer.cc
@@ -21869,6 +22085,8 @@ target_include_directories(otel_plugin_test
 target_link_libraries(otel_plugin_test
   ${_gRPC_ALLTARGETS_LIBRARIES}
   gtest
+  absl::endian
+  absl::int128
   opentelemetry-cpp::api
   opentelemetry-cpp::metrics
   grpc++_test_util
@@ -38057,7 +38275,7 @@ generate_pkgconfig(
   "gRPC++ OpenTelemetry Plugin"
   "OpenTelemetry Plugin for gRPC C++"
   "${gRPC_CPP_VERSION}"
-  "absl_absl_check absl_absl_log absl_algorithm_container absl_any_invocable absl_base absl_bind_front absl_bits absl_check absl_cleanup absl_config absl_cord absl_core_headers absl_flags absl_flags_marshalling absl_flat_hash_map absl_flat_hash_set absl_function_ref absl_hash absl_inlined_vector absl_log absl_log_globals absl_log_severity absl_memory absl_no_destructor absl_optional absl_random_bit_gen_ref absl_random_distributions absl_random_random absl_span absl_status absl_statusor absl_str_format absl_strings absl_synchronization absl_time absl_type_traits absl_utility absl_variant gpr grpc grpc++ opentelemetry_api"
+  "absl_absl_check absl_absl_log absl_algorithm_container absl_any_invocable absl_base absl_bind_front absl_bits absl_check absl_cleanup absl_config absl_cord absl_core_headers absl_endian absl_flags absl_flags_marshalling absl_flat_hash_map absl_flat_hash_set absl_function_ref absl_hash absl_inlined_vector absl_int128 absl_log absl_log_globals absl_log_severity absl_memory absl_no_destructor absl_optional absl_random_bit_gen_ref absl_random_distributions absl_random_random absl_span absl_status absl_statusor absl_str_format absl_strings absl_synchronization absl_time absl_type_traits absl_utility absl_variant gpr grpc grpc++ opentelemetry_api"
   "libcares openssl re2 zlib"
   "-lgrpcpp_otel_plugin"
   "-laddress_sorting -lupb_textformat_lib -lupb_json_lib -lupb_message_lib -lupb_mem_lib -lupb_base_lib -lutf8_range_lib"
