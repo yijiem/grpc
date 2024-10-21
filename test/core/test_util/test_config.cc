@@ -56,8 +56,8 @@ static unsigned seed(void) { return (unsigned)_getpid(); }
 #endif
 
 #ifdef GPR_WINDOWS
-#include <winsock2.h>
 #include <iphlpapi.h>
+#include <winsock2.h>
 #endif
 
 int64_t grpc_test_sanitizer_slowdown_factor() {
