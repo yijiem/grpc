@@ -26,7 +26,7 @@
 #include <functional>
 #include <utility>
 
-#include "src/core/lib/gprpp/time.h"
+// #include "src/core/lib/gprpp/time.h"
 #include "src/core/lib/iomgr/closure.h"
 #include "src/core/lib/iomgr/error.h"
 #include "src/core/lib/iomgr/exec_ctx.h"
@@ -56,7 +56,7 @@ class AlarmImpl : public grpc::internal::CompletionQueueTag {
     GRPC_CQ_INTERNAL_REF(cq->cq(), "alarm");
     cq_ = cq->cq();
     tag_ = tag;
-    GPR_ASSERT(grpc_cq_begin_op(cq_, this));
+    CHECK(grpc_cq_begin_op(cq_, this));
     GRPC_CLOSURE_INIT(
         &on_alarm_,
         [](void* arg, grpc_error_handle error) {

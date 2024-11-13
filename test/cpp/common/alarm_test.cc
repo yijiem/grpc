@@ -25,7 +25,9 @@
 #include <mutex>
 #include <thread>
 
-#include "test/core/util/test_config.h"
+#include "absl/log/log.h"
+#include "src/core/util/notification.h"
+#include "test/core/test_util/test_config.h"
 
 namespace grpc {
 namespace {
@@ -384,6 +386,23 @@ TEST(AlarmTest, CallbackSetDestruction) {
 TEST(AlarmTest, UnsetDestruction) {
   CompletionQueue cq;
   Alarm alarm;
+}
+
+TEST(AlarmTest, AlarmReuse) {
+  Alarm alarm;
+  CompletionQueue cq;
+  std::thread polling_thread([&]() {
+    void* tag;
+    bool ok = false;
+    while (cq.Next(&tag, &ok)) {
+      LOG(INFO) << "ok: " << ok;
+    }
+  });
+  while (true) {
+    alarm.Set(&cq, gpr_timespec{0, 0, GPR_TIMESPAN}, 0);
+    alarm.Cancel();
+  }
+  polling_thread.join();
 }
 
 }  // namespace
