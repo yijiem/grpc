@@ -399,7 +399,7 @@ TEST(AlarmTest, AlarmReuse) {
     }
   });
   while (true) {
-    alarm.Set(&cq, gpr_timespec{0, 0, GPR_TIMESPAN}, 0);
+    alarm.Set(&cq, gpr_timespec{0, 0, GPR_TIMESPAN}, nullptr);
     alarm.Cancel();
   }
   polling_thread.join();
