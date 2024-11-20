@@ -346,7 +346,7 @@ class XdsSecurityTest : public XdsEnd2endTest {
          CreateEndpointsForBackends(backend_index_, backend_index_ + 1)},
     });
     balancer_->ads_service()->SetEdsResource(
-        BuildEdsResource(args, service_name.c_str()));
+        BuildEdsResource(args, service_name));
     auto cluster = default_cluster_;
     cluster.mutable_eds_cluster_config()->set_service_name(service_name);
     if (!identity_instance_name.empty() || !root_instance_name.empty()) {
