@@ -15,6 +15,7 @@
 
 #include <stddef.h>
 
+#include <algorithm>
 #include <memory>
 
 #include <grpc/support/cpu.h>
