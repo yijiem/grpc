@@ -16,6 +16,8 @@
 #include <stddef.h>
 
 #include <memory>
+#include <utility>
+#include <vector>
 
 #include <grpc/support/cpu.h>
 
