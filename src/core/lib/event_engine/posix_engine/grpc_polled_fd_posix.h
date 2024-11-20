@@ -17,6 +17,13 @@
 
 #include <grpc/support/port_platform.h>
 
+#include <sys/socket.h>
+#include <unistd.h>
+
+#include <unordered_set>
+
+#include <grpc/support/log.h>
+
 #include "src/core/lib/iomgr/port.h"
 
 #if GRPC_ARES == 1 && defined(GRPC_POSIX_SOCKET_ARES_EV_DRIVER)
